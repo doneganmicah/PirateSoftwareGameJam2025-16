@@ -7,7 +7,7 @@ const JUMP_VELOCITY = -400.0
 
 func _physics_process(delta: float) -> void:
 	
-	var direction := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var direction := Input.get_vector("player_left", "player_right", "player_up", "player_down")
 	
 	if direction:
 		# Sprite Orientation
