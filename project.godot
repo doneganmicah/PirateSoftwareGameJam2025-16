@@ -14,6 +14,10 @@ config/name="PirateSoftwareGameJam2025-16"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[editor]
+
+movie_writer/movie_file="C:/Users/luvde/Videos/PlayerMovmentTest.avi"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
