@@ -30,3 +30,18 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 	
 	move_and_slide()
+
+# Called when the player has received any damage
+func receive_damage(damage_amount: int):
+	# Visual Hit Indication
+	# Spoors?
+	health -= damage_amount
+	# Adjust Health Visual
+	if(health <= 0):
+		has_died()
+	return	
+	
+# The player has died	
+func has_died():
+	# TODO: Implement death handling
+	pass
