@@ -33,6 +33,7 @@ func _physics_process(delta: float) -> void:
 
 # Called when the player has received any damage
 func receive_damage(damage_amount: int):
+	print("Taking damage")
 	# Visual Hit Indication
 	# Spoors?
 	health -= damage_amount
