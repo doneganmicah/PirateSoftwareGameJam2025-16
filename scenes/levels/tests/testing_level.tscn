@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmjen4bcw24wh"]
+[gd_scene load_steps=3 format=3 uid="uid://bmjen4bcw24wh"]
 
 [ext_resource type="PackedScene" uid="uid://qpnbegdaqstg" path="res://scenes/player.tscn" id="1_xlmfb"]
+[ext_resource type="PackedScene" uid="uid://dm8s68xm57ymb" path="res://scenes/ui_elements/health_bar.tscn" id="2_io8dk"]
 
 [node name="TestingLevel" type="Node2D"]
+
+[node name="HealthBar" parent="." instance=ExtResource("2_io8dk")]
 
 [node name="Player" parent="." instance=ExtResource("1_xlmfb")]
 position = Vector2(561, 372)

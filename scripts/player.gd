@@ -2,13 +2,21 @@ extends CharacterBody2D
 class_name Player
 
 const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
 
 var health: int = 3:
 	get: return health
 	set(value): health = maxi(0, value)
+var heartsList: Array[TextureRect]
 
 @export var playerAnimation: AnimatedSprite2D
+
+func _ready() -> void:
+	var heartsContainer = $"../HealthBar/HBoxContainer"
+	for child in heartsContainer.get_children():
+		heartsList.append(child)
+	
+	# Set initial state of health bar
+	update_health_visual()
 
 func _physics_process(delta: float) -> void:
 	
@@ -35,8 +43,9 @@ func _physics_process(delta: float) -> void:
 func receive_damage(damage_amount: int):
 	# Visual Hit Indication
 	# Spoors?
-	health -= damage_amount
+	health -= damage_amount	
 	# Adjust Health Visual
+	update_health_visual()
 	if(health <= 0):
 		has_died()
 	return	
@@ -44,4 +53,15 @@ func receive_damage(damage_amount: int):
 # The player has died	
 func has_died():
 	# TODO: Implement death handling
+	print("ded")
 	pass
+
+func update_health_visual():
+	for i in range(heartsList.size()):
+		if i < health:
+			heartsList[i].get_child(0).play("full_heart")
+		else:
+			heartsList[i].get_child(0).play("empty_heart")
+		# Make furthest right heart pulse
+		if i == health - 1:
+			heartsList[i].get_child(0).play("full_heart_pulse")
