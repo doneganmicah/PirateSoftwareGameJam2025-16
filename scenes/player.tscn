@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dlxws6v8ushke" path="res://assets/player/Shroomie_Idle_Cycle.png" id="2_w6k84"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h5l12"]
-size = Vector2(38, 18)
+size = Vector2(38, 88)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ywtl3"]
 atlas = ExtResource("2_w6k84")
@@ -109,17 +109,16 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("playerAnimation") groups=["player"]]
-platform_on_leave = 2
-platform_floor_layers = 4294901760
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("playerAnimation")]
 script = ExtResource("1_4opyj")
 playerAnimation = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -44)
 shape = SubResource("RectangleShape2D_h5l12")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -40)
+position = Vector2(0, -49)
 scale = Vector2(0.05, 0.05)
 sprite_frames = SubResource("SpriteFrames_5r007")
 animation = &"idle"

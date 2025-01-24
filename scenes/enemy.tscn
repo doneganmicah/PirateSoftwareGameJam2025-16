@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0btscpuj5pgl"]
+[gd_scene load_steps=6 format=3 uid="uid://c0btscpuj5pgl"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_y478f"]
 [ext_resource type="Texture2D" uid="uid://cd0cns2fwh1ek" path="res://assets/tests/Placeholder.png" id="2_d4hek"]
@@ -14,20 +14,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_r6xwo"]
-radius = 17.1172
+[sub_resource type="CircleShape2D" id="CircleShape2D_7fax3"]
+radius = 25.02
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6dcrf"]
 radius = 7.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2p6qr"]
-radius = 87.0057
-
-[node name="enemy" type="CharacterBody2D" groups=["enemy"]]
-floor_stop_on_slope = false
-floor_block_on_wall = false
-platform_on_leave = 2
-platform_floor_layers = 4294901760
+[node name="enemy" type="Node2D"]
 script = ExtResource("1_y478f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -38,18 +31,10 @@ sprite_frames = SubResource("SpriteFrames_cmgkb")
 position = Vector2(0, 12)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeAttackEffectiveRange"]
-shape = SubResource("CircleShape2D_r6xwo")
+shape = SubResource("CircleShape2D_7fax3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 position = Vector2(0, 12)
 shape = SubResource("CircleShape2D_6dcrf")
-
-[node name="Vision" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Vision"]
-position = Vector2(0, 12)
-shape = SubResource("CircleShape2D_2p6qr")
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-avoidance_enabled = true
-debug_enabled = true
