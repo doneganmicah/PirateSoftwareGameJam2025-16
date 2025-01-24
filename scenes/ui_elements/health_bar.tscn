@@ -1,0 +1,120 @@
+[gd_scene load_steps=12 format=3 uid="uid://dm8s68xm57ymb"]
+
+[ext_resource type="Texture2D" uid="uid://bn63m4mi0unvc" path="res://assets/ui_elements/Empty_Heartbeat.png" id="1_xing6"]
+[ext_resource type="Texture2D" uid="uid://bhq6el6wrnd14" path="res://assets/ui_elements/Full_Heartbeat.png" id="2_yjbrg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x43gf"]
+atlas = ExtResource("1_xing6")
+region = Rect2(1000, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gki5l"]
+atlas = ExtResource("2_yjbrg")
+region = Rect2(1000, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0uqnl"]
+atlas = ExtResource("2_yjbrg")
+region = Rect2(0, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lda23"]
+atlas = ExtResource("2_yjbrg")
+region = Rect2(500, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydw47"]
+atlas = ExtResource("2_yjbrg")
+region = Rect2(1000, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2hpi"]
+atlas = ExtResource("2_yjbrg")
+region = Rect2(1500, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqpwr"]
+atlas = ExtResource("2_yjbrg")
+region = Rect2(2000, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_brunh"]
+atlas = ExtResource("2_yjbrg")
+region = Rect2(2500, 0, 500, 500)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_03faa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x43gf")
+}],
+"loop": true,
+"name": &"empty_heart",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gki5l")
+}],
+"loop": true,
+"name": &"full_heart",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0uqnl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lda23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ydw47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2hpi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqpwr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_brunh")
+}],
+"loop": true,
+"name": &"full_heart_pulse",
+"speed": 12.0
+}]
+
+[node name="HealthBar" type="CanvasLayer"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Heart1" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HBoxContainer/Heart1"]
+position = Vector2(33, 30)
+scale = Vector2(0.12, 0.12)
+sprite_frames = SubResource("SpriteFrames_03faa")
+animation = &"full_heart"
+autoplay = "full_heart"
+frame_progress = 0.852954
+
+[node name="Heart2" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HBoxContainer/Heart2"]
+position = Vector2(33, 30)
+scale = Vector2(0.12, 0.12)
+sprite_frames = SubResource("SpriteFrames_03faa")
+animation = &"full_heart"
+autoplay = "full_heart"
+frame_progress = 0.073929
+
+[node name="Heart3" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HBoxContainer/Heart3"]
+position = Vector2(33, 30)
+scale = Vector2(0.12, 0.12)
+sprite_frames = SubResource("SpriteFrames_03faa")
+animation = &"full_heart_pulse"
+autoplay = "full_heart"
+frame_progress = 0.793508
