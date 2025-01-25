@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://qpnbegdaqstg"]
+[gd_scene load_steps=19 format=3 uid="uid://qpnbegdaqstg"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_4opyj"]
 [ext_resource type="Texture2D" uid="uid://dtt37u7atmdke" path="res://assets/player/PlayerWalk.PNG" id="2_oijom"]
@@ -109,6 +109,8 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ho3dn"]
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("playerAnimation") groups=["player"]]
 platform_on_leave = 2
 platform_floor_layers = 4294901760
@@ -124,3 +126,8 @@ scale = Vector2(0.05, 0.05)
 sprite_frames = SubResource("SpriteFrames_5r007")
 animation = &"idle"
 autoplay = "idle"
+
+[node name="SporeRing" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SporeRing"]
+shape = SubResource("CircleShape2D_ho3dn")

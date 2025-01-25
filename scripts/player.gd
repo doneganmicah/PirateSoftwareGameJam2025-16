@@ -8,10 +8,13 @@ var health: int = 3:
 	set(value): health = maxi(0, value)
 var heartsList: Array[TextureRect]
 
+@onready var sporeRing = $"Area2D"
+
 @export var playerAnimation: AnimatedSprite2D
 
 func _ready() -> void:
 	var heartsContainer = $"../HealthBar/HBoxContainer"
+	
 	for child in heartsContainer.get_children():
 		heartsList.append(child)
 	
@@ -19,6 +22,14 @@ func _ready() -> void:
 	update_health_visual()
 
 func _physics_process(delta: float) -> void:
+	
+	# Get bodies interacting with the spore ring
+	var bodies = sporeRing.get_overlapping_bodies()
+	
+	# Check which bodies are enemies
+	for body in bodies:
+		if (body.name.contains("enemy_test")): # Hard-coded for now, will set to enemy class or smth
+			print("Enemy Spored")
 	
 	var direction := Input.get_vector("player_left", "player_right", "player_up", "player_down")
 	
