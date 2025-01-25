@@ -15,8 +15,10 @@ var heartsList: Array[TextureRect]
 
 @onready var sporeRing = $SporeRing
 @onready var ringBody = $SporeRing/CollisionShape2D
+@onready var timer = $Timer
 
 @export var playerAnimation: AnimatedSprite2D
+@export var sporeTickTimer: float
 
 func _ready() -> void:
 	var heartsContainer = $"../HealthBar/HBoxContainer"
@@ -26,11 +28,12 @@ func _ready() -> void:
 	
 	# Set initial state of health bar
 	update_health_visual()
+	
+	# Set timer tick speed and start
+	timer.wait_time = sporeTickTimer
+	timer.start()
 
 func _physics_process(delta: float) -> void:
-	
-	# Get bodies interacting with the spore ring
-	var bodies = sporeRing.get_overlapping_bodies()
 	
 	# REMOVE LATER: Tab and Shift Tab can be used to adjust ring size for testing
 	if (Input.is_action_just_pressed("ui_text_dedent")):
@@ -40,11 +43,6 @@ func _physics_process(delta: float) -> void:
 	
 	# Update size of spore ring
 	set_ring_size(ringSize)
-	
-	# Check which bodies are enemies
-	for body in bodies:
-		if (body.name.contains("enemy_test")): # Hard-coded for now, will set to enemy class or smth
-			print("Enemy Spored")
 	
 	var direction := Input.get_vector("player_left", "player_right", "player_up", "player_down")
 	
@@ -95,3 +93,14 @@ func update_health_visual():
 
 func set_ring_size(size: int):
 	ringBody.scale = Vector2(size, size)
+
+
+func _on_timer_timeout() -> void:
+	# Get bodies interacting with the spore ring
+	var bodies = sporeRing.get_overlapping_bodies()
+	
+	# Check which bodies are enemies
+	for body in bodies:
+		if (body.is_in_group("enemy")):
+			# Deal damage to enemy
+			body.take_damage(1.0)

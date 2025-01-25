@@ -116,6 +116,7 @@ platform_on_leave = 2
 platform_floor_layers = 4294901760
 script = ExtResource("1_4opyj")
 playerAnimation = NodePath("AnimatedSprite2D")
+sporeTickTimer = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_h5l12")
@@ -131,3 +132,7 @@ autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SporeRing"]
 shape = SubResource("CircleShape2D_ho3dn")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
