@@ -217,7 +217,7 @@ func get_patroling_vector() -> Vector2:
 		# NOT IMPLEMENTED YET
 		ENEMY_PATROLS.SEARCH:
 			pass
-			
+	
 	return vector
 
 ################################################################################
@@ -230,7 +230,7 @@ func AI_patrol_path() -> Vector2:
 	# set the target for the navigation
 	var point = control_points.get_child(path_switch) as Node2D 
 	nav_agent.target_position = point.global_position
-			
+	
 	# When the enemy has reached the POI and wasnt already standing there.
 	if(nav_agent.distance_to_target() <= POI_DEADZONE && waiting == false):
 		waiting = true
@@ -260,7 +260,7 @@ func AI_patrol_area() -> Vector2:
 	# set the target for the navigation
 	var point = control_points.get_child(area_switch) as Node2D 
 	nav_agent.target_position = point.global_position
-			
+	
 	# When the enemy has reached the POI and didnt already reach it
 	if(nav_agent.distance_to_target() <= POI_DEADZONE && not waiting):
 		waiting = true
@@ -296,7 +296,7 @@ func AI_guarding() -> Vector2:
 		vector = nav_agent.get_next_path_position() - global_position
 		vector = vector.normalized()
 		
-	return vector			
+	return vector
 	
 ################################################################################
 ## AI Behaviour: Steering                                                     ##
@@ -316,7 +316,7 @@ func AI_steering(current_velocity: Vector2, current_position: Vector2, target_po
 func take_damage(damage_amount : float) -> bool:
 	# Visual Damage Indication
 	self.enemy_health -= damage_amount
-	if (self.enemy_damage <= 0):
+	if (self.enemy_health <= 0):
 		has_died()
 		return true
 	return false
