@@ -8,6 +8,7 @@ extends Node2D
 ################################################################################
 ##                             Constants & Enums                              ##
 ################################################################################
+const TIMER_WAIT_TIME = 0.5 # The amount of time between the timer timeouts.
 
 ################################################################################
 ##                                 Properties                                 ##
@@ -26,33 +27,48 @@ var player : Player
 ##                                 Functions                                  ##
 ################################################################################
 
-# Called when the node enters the scene tree for the first time.
+################################################################################
+## Called when the node enters the scene tree for the first time.             ##
+################################################################################
 func _ready() -> void:
 	is_effecting = false
 	timer.one_shot = false
+	timer.wait_time = TIMER_WAIT_TIME
 	#enable to the spore particles
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-	
+################################################################################
+## Called when an object enters the area2d attached to the log. If it is a    ##
+## player it will start the timer that calms the players spore ring.          ##
+## Receives the node2D that entered.                                          ##
+## Returns void                                                               ##
+################################################################################
 func _on_player_enter(body : Node2D) -> void:
 	if(body.is_in_group("player")):
-		# A cheao way to get the instance of the player
+		# A cheap way to get the instance of the player
 		player = body as Player
 		print("Enter log range")
 		is_effecting = true
-		timer.start(0.5)
+		timer.start(TIMER_WAIT_TIME)
 
+################################################################################
+## Called when an object leaves the area2d attached to the log. If it is a    ##
+## player it will end the timer that calms the players spore ring.            ##
+## Receives the node2d that left the area.                                    ##
+## Returns void                                                               ##
+################################################################################
 func _on_player_leave(body : Node2D) -> void:
 	if(body.is_in_group("player")):
 		print("left log range")
 		is_effecting = false
 		timer.stop()
 
+################################################################################
+## Called by the timer's timeout when amount of time passed. When it is called##
+## the player will recieve calming.                                           ##
+## Returns void                                                               ##
+################################################################################
 func _on_timer_timeout() -> void:
 	if(player != null):
+		print("Be calm!")
 		# Call player lower AoE
 		pass
-		
