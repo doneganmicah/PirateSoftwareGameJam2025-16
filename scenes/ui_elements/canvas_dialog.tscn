@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://d04tt8h2ptlx6"]
+
+[ext_resource type="Script" path="res://scripts/dialogue_manager.gd" id="1_tdfjg"]
+[ext_resource type="Theme" uid="uid://c2jwme6jn8pm4" path="res://assets/ui_elements/ui_themes/ui_dialog.tres" id="2_7ivim"]
+
+[node name="CanvasDialog" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_tdfjg")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -394.0
+offset_right = 200.0
+offset_bottom = 184.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_7ivim")
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer"]
+custom_minimum_size = Vector2(600, 100)
+layout_mode = 2
+color = Color(1, 0.913725, 0.784314, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/ColorRect"]
+layout_mode = 0
+offset_right = 600.0
+offset_bottom = 148.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/ColorRect/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+fit_content = true
+scroll_active = false
+
+[node name="signalHandle" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
