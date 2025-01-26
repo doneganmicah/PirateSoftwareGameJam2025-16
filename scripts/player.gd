@@ -4,10 +4,11 @@ class_name Player
 const SPEED = 300.0
 const MAX_RING_SIZE = 10
 const MIN_RING_SIZE = 1
+const MAX_HEALTH    = 3
 
 var health: int = 3:
 	get: return health
-	set(value): health = maxi(0, value)
+	set(value): health = clamp(value, 0, MAX_HEALTH)
 var ringSize: int = 1: # To set the ring size, call set_ring_size(int between min and max)
 	get: return ringSize
 	set(value): ringSize = clamp(value, MIN_RING_SIZE, MAX_RING_SIZE)
