@@ -37,8 +37,10 @@ func _physics_process(delta: float) -> void:
 	
 	# REMOVE LATER: Tab and Shift Tab can be used to adjust ring size for testing
 	if (Input.is_action_just_pressed("ui_text_dedent")):
+		print("Ring Decrease")
 		ringSize -= 1
 	elif (Input.is_action_just_pressed("ui_text_indent")):
+		print("Ring Increase")
 		ringSize += 1
 	
 	# Update size of spore ring

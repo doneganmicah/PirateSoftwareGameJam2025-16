@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://qpnbegdaqstg"]
+[gd_scene load_steps=20 format=3 uid="uid://qpnbegdaqstg"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_4opyj"]
 [ext_resource type="Texture2D" uid="uid://dtt37u7atmdke" path="res://assets/player/PlayerWalk.PNG" id="2_oijom"]
 [ext_resource type="Texture2D" uid="uid://dlxws6v8ushke" path="res://assets/player/Shroomie_Idle_Cycle.png" id="2_w6k84"]
+[ext_resource type="Texture2D" uid="uid://cc2ms6q4wy1hm" path="res://assets/player/spore_ring.png" id="4_rh5kp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h5l12"]
 size = Vector2(38, 18)
@@ -132,6 +133,11 @@ autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SporeRing"]
 shape = SubResource("CircleShape2D_ho3dn")
+
+[node name="Sprite2D" type="Sprite2D" parent="SporeRing/CollisionShape2D"]
+z_index = -1
+scale = Vector2(0.013, 0.013)
+texture = ExtResource("4_rh5kp")
 
 [node name="Timer" type="Timer" parent="."]
 
