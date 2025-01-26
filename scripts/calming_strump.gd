@@ -70,5 +70,5 @@ func _on_player_leave(body : Node2D) -> void:
 func _on_timer_timeout() -> void:
 	if(player != null):
 		print("Be calm!")
-		# Call player lower AoE
+		player.ringSize -= 1
 		pass
