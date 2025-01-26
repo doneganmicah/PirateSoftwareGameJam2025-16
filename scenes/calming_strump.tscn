@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3hfpxfkxssge"]
+
+[ext_resource type="Script" path="res://scripts/calming_strump.gd" id="1_d5fmy"]
+[ext_resource type="Texture2D" uid="uid://ci1xyjg4rci33" path="res://assets/tests/placeholderStump.png" id="2_cj272"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_72iiv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cj272")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dhasv"]
+radius = 20.025
+
+[node name="CalmingStrump" type="Node2D"]
+script = ExtResource("1_d5fmy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.136181, 0.136181)
+sprite_frames = SubResource("SpriteFrames_72iiv")
+
+[node name="RangeOfEffect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeOfEffect"]
+shape = SubResource("CircleShape2D_dhasv")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="body_entered" from="RangeOfEffect" to="." method="_on_player_enter"]
+[connection signal="body_exited" from="RangeOfEffect" to="." method="_on_player_leave"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
