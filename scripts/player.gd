@@ -12,9 +12,11 @@ var ringSize: int = 1: # To set the ring size, call set_ring_size(int between mi
 	get: return ringSize
 	set(value): ringSize = clamp(value, MIN_RING_SIZE, MAX_RING_SIZE)
 var heartsList: Array[TextureRect]
+# if the ring is being animated right now
+var drawing_ring = false
 
 @onready var sporeRing = $SporeRing
-@onready var ringBody = $SporeRing/CollisionShape2D
+@onready var ringBody: CollisionShape2D = $SporeRing/CollisionShape2D
 @onready var timer = $Timer
 
 @export var playerAnimation: AnimatedSprite2D
@@ -93,8 +95,16 @@ func update_health_visual():
 		if i == health - 1:
 			heartsList[i].get_child(0).play("full_heart_pulse")
 
+################################################################################
+## Updated this to take in a target radius 
+################################################################################
 func set_ring_size(size: int):
-	ringBody.scale = Vector2(size, size)
+	if(ringBody.scale != Vector2(size, size) and not drawing_ring):
+		drawing_ring = true
+		await get_tree().create_tween().tween_property(ringBody, "scale", Vector2(size,size), 0.30).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUART).finished
+		drawing_ring = false
+	elif(not drawing_ring):
+		ringBody.scale = Vector2(size, size)
 
 
 func _on_timer_timeout() -> void:
