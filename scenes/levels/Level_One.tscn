@@ -1,0 +1,678 @@
+[gd_scene load_steps=19 format=3 uid="uid://cor0e3blkkrx7"]
+
+[ext_resource type="PackedScene" uid="uid://dm8s68xm57ymb" path="res://scenes/ui_elements/health_bar.tscn" id="1_eeck2"]
+[ext_resource type="PackedScene" uid="uid://qpnbegdaqstg" path="res://scenes/player.tscn" id="1_gpid8"]
+[ext_resource type="Texture2D" uid="uid://d14f3hj5xqf6u" path="res://assets/level/Grass_Background_.png" id="2_gv7uu"]
+[ext_resource type="Texture2D" uid="uid://cseawkxsxy5ft" path="res://assets/level/Circle_Tree_Crown.png" id="3_pqtp7"]
+[ext_resource type="Texture2D" uid="uid://35f42vaxa6eq" path="res://assets/level/Rock_Doppelgänger_.png" id="4_2yxfp"]
+[ext_resource type="Texture2D" uid="uid://byapxcui4neir" path="res://assets/level/Circle_Tree.png" id="5_4ikxw"]
+[ext_resource type="Texture2D" uid="uid://cuamigq25d6tb" path="res://assets/level/Stump.png" id="6_7w1jv"]
+[ext_resource type="Texture2D" uid="uid://uoxooyxk0xqd" path="res://assets/level/Bright Fuzzy_Tree_Crown_bush.png" id="7_t7b05"]
+[ext_resource type="Texture2D" uid="uid://boitjwil8qmbm" path="res://assets/level/Bright Fuzzy_Tree_Crown.png" id="8_jycsq"]
+
+[sub_resource type="Environment" id="Environment_j1mid"]
+
+[sub_resource type="Gradient" id="Gradient_v2n6l"]
+offsets = PackedFloat32Array(0.328125, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_go3df"]
+gradient = SubResource("Gradient_v2n6l")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.982906, 0.034188)
+
+[sub_resource type="Gradient" id="Gradient_mse8q"]
+offsets = PackedFloat32Array(0.74375, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r4jog"]
+gradient = SubResource("Gradient_mse8q")
+fill = 1
+fill_from = Vector2(0.858974, 0.512821)
+fill_to = Vector2(0, 0.491453)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a2m7s"]
+radius = 131.889
+height = 988.343
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kjuhd"]
+radius = 114.579
+height = 1801.22
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l1754"]
+radius = 100.057
+height = 1650.76
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lrqw6"]
+radius = 62.0
+height = 798.0
+
+[node name="LevelOne" type="Node2D"]
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_j1mid")
+
+[node name="GlobalLight" type="DirectionalLight2D" parent="Environment"]
+blend_mode = 1
+
+[node name="PointLight2D2" type="PointLight2D" parent="Environment"]
+position = Vector2(-860.5, -573.5)
+scale = Vector2(88.6094, 49.2969)
+texture = SubResource("GradientTexture2D_go3df")
+
+[node name="PointLight2D3" type="PointLight2D" parent="Environment"]
+position = Vector2(-1485.5, -529)
+scale = Vector2(68.9219, 28.375)
+blend_mode = 1
+texture = SubResource("GradientTexture2D_r4jog")
+
+[node name="HealthBar" parent="." instance=ExtResource("1_eeck2")]
+
+[node name="Player" parent="." instance=ExtResource("1_gpid8")]
+position = Vector2(-2257, -542)
+scale = Vector2(1.51138, 1.51138)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(6, -13)
+zoom = Vector2(1.2, 1.2)
+
+[node name="Floor" type="Node" parent="."]
+
+[node name="Ground" type="Node" parent="Floor"]
+
+[node name="Polygon2D" type="Polygon2D" parent="Floor/Ground"]
+position = Vector2(20, 45)
+texture = ExtResource("2_gv7uu")
+texture_scale = Vector2(2, 2)
+polygon = PackedVector2Array(-2744, -732, -2587, -882, -1275, -882, -1218, -1270, -616, -1570, 97, -1505, 439, -1238, 509, -808, 829, -817, 829, -515, 506, -520, 485, -201, 122, 276, -313, 251, -910, 204, -1148, -173, -1283, -319, -2134, -308, -2676, -319, -2776, -493)
+uv = PackedVector2Array(38.1159, 251.152, 78.1901, 212.864, 413.079, 212.864, 427.628, 113.827, 581.289, 37.2521, 763.282, 53.8434, 850.578, 121.995, 873.242, 236.239, 946.886, 232.774, 951.218, 321.147, 872.375, 319.414, 862.319, 386.69, 769.663, 508.444, 658.629, 502.063, 506.245, 490.066, 445.495, 393.837, 411.037, 356.57, 193.819, 359.378, 55.4729, 356.57, 29.9479, 312.157)
+
+[node name="Decoration" type="Node" parent="Floor"]
+
+[node name="RockDoppelgänger" type="Sprite2D" parent="Floor/Decoration"]
+position = Vector2(-167, -614)
+scale = Vector2(1.40837, 1.40837)
+texture = ExtResource("4_2yxfp")
+
+[node name="CircleTree" type="Sprite2D" parent="Floor/Decoration"]
+position = Vector2(-779, -1353)
+texture = ExtResource("5_4ikxw")
+
+[node name="CircleTree2" type="Sprite2D" parent="Floor/Decoration"]
+position = Vector2(-488, -1402)
+texture = ExtResource("5_4ikxw")
+
+[node name="CircleTree3" type="Sprite2D" parent="Floor/Decoration"]
+position = Vector2(-194, -1382)
+texture = ExtResource("5_4ikxw")
+
+[node name="CircleTree4" type="Sprite2D" parent="Floor/Decoration"]
+position = Vector2(254, -1339)
+texture = ExtResource("5_4ikxw")
+
+[node name="CircleTree5" type="Sprite2D" parent="Floor/Decoration"]
+position = Vector2(-1134, -1100)
+texture = ExtResource("5_4ikxw")
+
+[node name="CircleTree6" type="Sprite2D" parent="Floor/Decoration"]
+position = Vector2(-1609, -875)
+texture = ExtResource("5_4ikxw")
+
+[node name="CircleTree7" type="Sprite2D" parent="Floor/Decoration"]
+position = Vector2(-2471, -874)
+texture = ExtResource("5_4ikxw")
+
+[node name="CircleTree8" type="Sprite2D" parent="Floor/Decoration"]
+position = Vector2(-2036, -872)
+texture = ExtResource("5_4ikxw")
+
+[node name="Stump" type="Sprite2D" parent="Floor/Decoration"]
+position = Vector2(-2289, -750)
+scale = Vector2(0.337012, 0.337012)
+texture = ExtResource("6_7w1jv")
+
+[node name="Stump2" type="Sprite2D" parent="Floor/Decoration"]
+position = Vector2(-1312, -845)
+scale = Vector2(0.337012, 0.337012)
+texture = ExtResource("6_7w1jv")
+
+[node name="Stump3" type="Sprite2D" parent="Floor/Decoration"]
+position = Vector2(81, -1314)
+scale = Vector2(0.337012, 0.337012)
+texture = ExtResource("6_7w1jv")
+
+[node name="BrightFuzzyTreeCrownBush" type="Sprite2D" parent="Floor/Decoration"]
+position = Vector2(-619, -1203)
+texture = ExtResource("7_t7b05")
+
+[node name="BrightFuzzyTreeCrownBush2" type="Sprite2D" parent="Floor/Decoration"]
+position = Vector2(-1191, -877)
+texture = ExtResource("7_t7b05")
+
+[node name="BrightFuzzyTreeCrownBush3" type="Sprite2D" parent="Floor/Decoration"]
+position = Vector2(347, -1121)
+texture = ExtResource("7_t7b05")
+
+[node name="BrightFuzzyTreeCrownBush4" type="Sprite2D" parent="Floor/Decoration"]
+position = Vector2(-1799, -677)
+texture = ExtResource("7_t7b05")
+
+[node name="BrightFuzzyTreeCrownBush5" type="Sprite2D" parent="Floor/Decoration"]
+position = Vector2(-2588, -669)
+texture = ExtResource("7_t7b05")
+
+[node name="BrightFuzzyTreeCrownBush6" type="Sprite2D" parent="Floor/Decoration"]
+position = Vector2(-2449, -378)
+texture = ExtResource("7_t7b05")
+
+[node name="BrightFuzzyTreeCrownBush7" type="Sprite2D" parent="Floor/Decoration"]
+position = Vector2(-1292, -333)
+texture = ExtResource("7_t7b05")
+
+[node name="BrightFuzzyTreeCrownBush8" type="Sprite2D" parent="Floor/Decoration"]
+position = Vector2(-101, -483)
+texture = ExtResource("7_t7b05")
+
+[node name="BrightFuzzyTreeCrownBush9" type="Sprite2D" parent="Floor/Decoration"]
+position = Vector2(-375, -503)
+texture = ExtResource("7_t7b05")
+
+[node name="BrightFuzzyTreeCrown" type="Sprite2D" parent="Floor/Decoration"]
+position = Vector2(-54, -1285)
+texture = ExtResource("8_jycsq")
+
+[node name="Boundery" type="StaticBody2D" parent="Floor"]
+z_index = 15
+position = Vector2(8, 122)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/Boundery"]
+position = Vector2(-1055, -91)
+rotation = -0.774326
+shape = SubResource("CapsuleShape2D_a2m7s")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Floor/Boundery"]
+position = Vector2(-1158, -1266)
+rotation = 0.869087
+scale = Vector2(1.14332, 1.20954)
+shape = SubResource("CapsuleShape2D_a2m7s")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Floor/Boundery"]
+position = Vector2(-229, -1422)
+rotation = 1.5708
+scale = Vector2(1.14332, 0.958239)
+shape = SubResource("CapsuleShape2D_kjuhd")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Floor/Boundery"]
+position = Vector2(-2025, -382)
+rotation = 1.56621
+shape = SubResource("CapsuleShape2D_l1754")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Floor/Boundery"]
+position = Vector2(-2204, -922)
+rotation = 1.56621
+shape = SubResource("CapsuleShape2D_l1754")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Floor/Boundery"]
+position = Vector2(-2665, -600)
+shape = SubResource("CapsuleShape2D_lrqw6")
+
+[node name="Walls" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1.05, 1.05)
+scroll_offset = Vector2(20, 10)
+
+[node name="CircleTreeCrown" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-2308, -238)
+scale = Vector2(1.409, 1.43504)
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown2" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-1998, -278)
+rotation = 0.320226
+scale = Vector2(1.56687, 1.59582)
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown3" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-1690, -189)
+rotation = -0.468233
+scale = Vector2(1.67845, 1.70947)
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown4" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-1333, -205)
+rotation = -0.424889
+scale = Vector2(1.20618, 1.22847)
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown5" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-2646, -336)
+rotation = 0.695373
+scale = Vector2(1.23792, 1.2608)
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown6" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-2844.85, -591.356)
+rotation = 1.55311
+scale = Vector2(1.30545, 1.32957)
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown7" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-2635.9, -883.609)
+rotation = -0.146822
+scale = Vector2(1.38865, 1.41432)
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown8" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-2322, -967)
+rotation = 0.695373
+scale = Vector2(1.38142, 1.40695)
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown9" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-1898, -905)
+rotation = 0.214566
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown10" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-2063, -1148)
+rotation = 0.214566
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown11" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-3010, -992)
+rotation = 0.214566
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown12" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-3184, -674)
+rotation = 0.214566
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown13" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-3019, -320)
+rotation = 1.22637
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown14" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-3394, -395)
+rotation = 1.22637
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown15" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-2729, -43.9999)
+rotation = 0.27162
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown16" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-1501, -979)
+rotation = -0.265489
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown17" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-1690, -1249)
+rotation = 2.19535
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown18" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-1184, -1206)
+rotation = 2.19535
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown19" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-1398, -1413)
+rotation = 2.19535
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown20" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-1143, -1607)
+rotation = 2.67636
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown21" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-621, -1524)
+rotation = 1.29582
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown22" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-914, -1468)
+rotation = 2.19535
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown23" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-236, -1498)
+rotation = 0.748389
+scale = Vector2(1.55106, 1.58492)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown24" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(170, -1554)
+rotation = 2.19535
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown25" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(429, -1359)
+rotation = 1.46983
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown26" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(582, -1037)
+rotation = 1.46983
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown27" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(494, -217)
+rotation = 1.46983
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown28" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(141, 271)
+rotation = 1.46983
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown29" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-1008, 410)
+rotation = 1.46983
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown34" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-1077, -60)
+rotation = 2.03935
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown54" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-1077, -60)
+rotation = 2.03935
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown35" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-664, 339)
+rotation = 2.03935
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown36" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-133, 333)
+rotation = 2.03935
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown37" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(463, 406)
+rotation = 2.03935
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown38" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-877, 159)
+rotation = 2.03935
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown55" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-738, 611)
+rotation = 2.03935
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown39" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-1508, 145)
+rotation = 2.03935
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown40" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-1369, 220)
+rotation = 4.1027
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown41" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(1022, -354)
+rotation = 3.813
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown42" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(936, -835)
+rotation = 3.813
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown43" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(1043, -546)
+rotation = 3.813
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown44" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-831, -1859)
+rotation = 3.813
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown45" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-460, -1807)
+rotation = 3.813
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown46" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-51, -1788)
+rotation = 3.813
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown47" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(525, -1683)
+rotation = 3.813
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown48" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(730, -1383)
+rotation = 3.813
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown49" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(935, -1140)
+rotation = 3.813
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown50" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(1268, -935)
+rotation = 3.813
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown51" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(1382, -631)
+rotation = 3.813
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown52" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(846, -102)
+rotation = 3.813
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown53" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(749, 249)
+rotation = 3.813
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown30" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-367, 285)
+rotation = 0.613472
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown31" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(384, 44)
+rotation = 0.424391
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown32" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(682, -871)
+rotation = 0.424391
+scale = Vector2(1.4209, 1.45191)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown33" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(669, -396)
+rotation = 0.854597
+scale = Vector2(1.47636, 1.72487)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown56" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(-403, 625)
+rotation = 0.854597
+scale = Vector2(1.47636, 1.72487)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown57" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(68.9999, 679)
+rotation = 0.854597
+scale = Vector2(1.47636, 1.72487)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")
+
+[node name="CircleTreeCrown58" type="Sprite2D" parent="Walls"]
+z_index = 6
+position = Vector2(420, 710)
+rotation = 0.854597
+scale = Vector2(1.47636, 1.72487)
+skew = -0.0180148
+texture = ExtResource("3_pqtp7")

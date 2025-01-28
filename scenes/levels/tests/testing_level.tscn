@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bmjen4bcw24wh"]
+[gd_scene load_steps=5 format=3 uid="uid://bmjen4bcw24wh"]
 
 [ext_resource type="PackedScene" uid="uid://qpnbegdaqstg" path="res://scenes/player.tscn" id="1_xlmfb"]
 [ext_resource type="PackedScene" uid="uid://dm8s68xm57ymb" path="res://scenes/ui_elements/health_bar.tscn" id="2_io8dk"]
 [ext_resource type="PackedScene" uid="uid://b5c1n863vmfr0" path="res://scenes/enemy_test.tscn" id="2_ul73w"]
-[ext_resource type="PackedScene" uid="uid://di6xce1ric4yn" path="res://scenes/calming_strump.tscn" id="4_b7cvd"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_4mb60"]
 vertices = PackedVector2Array(151.422, 574.477, 276.578, 450.133, 536.938, 304.102, 570.406, 362.273, 656.383, 514.602, 876.617, 1433.34, 228.688, 1538.3, -595.32, 1407.6, 1775.38, -153.523, 1807.84, 1270.81, 835.203, 491.023, 777.961, 294.75, 680.547, 195.359, 678.531, 183.398, 413.828, 186.469, 233.023, 354.906, 213.719, 212.359, 158.023, 337.25, 20.4688, 341.32, 89.9063, 394.719, -1115.49, 522.273, 538.563, -415.594, 516, 130.828, -1024.33, -175.031, -223.578, -405.039, 43.2813, 196.703)

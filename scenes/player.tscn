@@ -120,7 +120,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_ho3dn"]
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("playerAnimation") groups=["player"]]
-z_index = 10
+z_index = 5
 platform_on_leave = 2
 platform_floor_layers = 4294901760
 script = ExtResource("1_4opyj")

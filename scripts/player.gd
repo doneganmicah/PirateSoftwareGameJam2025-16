@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
-const SPEED = 300.0
+const SPEED = 400.0
 const MAX_RING_SIZE = 10
 const MIN_RING_SIZE = 1
 const MAX_HEALTH    = 3
