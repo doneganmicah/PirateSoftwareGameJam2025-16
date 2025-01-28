@@ -95,6 +95,10 @@ var enemy_mass : int:
 	
 	
 ## Pathing Variables
+var normalized_dir_vectors = PathVectors.new()
+var weighted_vectors = PathVectors.new()
+var obstacles_vecotrs = PathVectors.new()
+
 # Current Point of Interest
 var current_poi : Vector2
 # Path switching
@@ -116,6 +120,8 @@ var rng = RandomNumberGenerator.new()
 ## Fill out some variables to prevent uninitialized errors                    ##
 ################################################################################
 func _init() -> void:
+	normalized_dir_vectors
+	
 	_initialize_enemy(ENEMY_TYPES.PLACEHOLDER)
 	rng.set_seed(int(Time.get_unix_time_from_system()))
 	return
@@ -136,7 +142,11 @@ func _initialize_enemy(type: ENEMY_TYPES, activity = ENEMY_ACTIVITIES.DEFAULT ,v
 	self.enemy_patrol_type = patrol
 	self.enemy_mass        = mass
 	is_alive = true
-	
+	if(control_points == null):
+		print("Error: enemy.gd | _initialize_enemy() | The enemy doesn't have the control points node")
+		print("Object: " + self.name + "!")
+		self.enemy_patrol_type = ENEMY_PATROLS.DEFAULT
+		return
 	# Check the patrol type nodes
 	# I'm not going to write code to check if the points are within the navmesh
 	# So be sure to triple check that the nodes dont leave the navmesh.
@@ -148,7 +158,7 @@ func _initialize_enemy(type: ENEMY_TYPES, activity = ENEMY_ACTIVITIES.DEFAULT ,v
 				print("Has \'" + str(control_points.get_child_count())  + "\' expected 2 for Path Patrol!")
 				print("Object: " + self.name + "!")
 				# Sets the type to no_ai to prevent errors
-				self.enemy_patrol_type = ENEMY_PATROLS.DEFAULT
+				
 				return
 		# Area requires atleast two points
 		ENEMY_PATROLS.AREA:
@@ -320,6 +330,9 @@ func take_damage(damage_amount : float) -> bool:
 		has_died()
 		return true
 	return false
+
+
+
 
 ################################################################################
 ## Called when an attack from the sub_class lands on a player and needs       ## 
