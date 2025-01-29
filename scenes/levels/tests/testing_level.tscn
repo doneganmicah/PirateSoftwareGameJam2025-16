@@ -14,6 +14,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-225.05, -415.032, 539.
 [node name="HealthBar" parent="." instance=ExtResource("2_io8dk")]
 
 [node name="Player" parent="." instance=ExtResource("1_xlmfb")]
+z_index = 10
 position = Vector2(699, 617)
 scale = Vector2(2.18754, 2.18754)
 
