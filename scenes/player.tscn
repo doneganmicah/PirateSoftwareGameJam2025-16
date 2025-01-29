@@ -140,31 +140,32 @@ autoplay = "idle"
 [node name="SporeRing" type="Area2D" parent="."]
 position = Vector2(0, -4)
 
-[node name="SporeEmitters" type="Node2D" parent="SporeRing"]
-z_index = 5
-
-[node name="SporeParticles" parent="SporeRing/SporeEmitters" instance=ExtResource("5_3mviw")]
-
-[node name="SporeParticles2" parent="SporeRing/SporeEmitters" instance=ExtResource("5_3mviw")]
-texture = ExtResource("6_pnqia")
-
-[node name="SporeParticles3" parent="SporeRing/SporeEmitters" instance=ExtResource("5_3mviw")]
-texture = ExtResource("7_4uf0y")
-
-[node name="SporeParticles4" parent="SporeRing/SporeEmitters" instance=ExtResource("5_3mviw")]
-texture = ExtResource("8_s2cv6")
-
-[node name="SporeParticles5" parent="SporeRing/SporeEmitters" instance=ExtResource("5_3mviw")]
-texture = ExtResource("9_uejfe")
-
-[node name="SporeParticles6" parent="SporeRing/SporeEmitters" instance=ExtResource("5_3mviw")]
-texture = ExtResource("10_fgcpv")
-
-[node name="SporeParticles7" parent="SporeRing/SporeEmitters" instance=ExtResource("5_3mviw")]
-texture = ExtResource("11_dkbqw")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SporeRing"]
 shape = SubResource("CircleShape2D_ho3dn")
+
+[node name="SporeEmitters" type="Node2D" parent="SporeRing/CollisionShape2D"]
+z_index = 5
+scale = Vector2(0.15, 0.15)
+
+[node name="SporeParticles" parent="SporeRing/CollisionShape2D/SporeEmitters" instance=ExtResource("5_3mviw")]
+
+[node name="SporeParticles2" parent="SporeRing/CollisionShape2D/SporeEmitters" instance=ExtResource("5_3mviw")]
+texture = ExtResource("6_pnqia")
+
+[node name="SporeParticles3" parent="SporeRing/CollisionShape2D/SporeEmitters" instance=ExtResource("5_3mviw")]
+texture = ExtResource("7_4uf0y")
+
+[node name="SporeParticles4" parent="SporeRing/CollisionShape2D/SporeEmitters" instance=ExtResource("5_3mviw")]
+texture = ExtResource("8_s2cv6")
+
+[node name="SporeParticles5" parent="SporeRing/CollisionShape2D/SporeEmitters" instance=ExtResource("5_3mviw")]
+texture = ExtResource("9_uejfe")
+
+[node name="SporeParticles6" parent="SporeRing/CollisionShape2D/SporeEmitters" instance=ExtResource("5_3mviw")]
+texture = ExtResource("10_fgcpv")
+
+[node name="SporeParticles7" parent="SporeRing/CollisionShape2D/SporeEmitters" instance=ExtResource("5_3mviw")]
+texture = ExtResource("11_dkbqw")
 
 [node name="Sprite2D" type="Sprite2D" parent="SporeRing/CollisionShape2D"]
 visible = false
