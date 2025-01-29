@@ -34,10 +34,7 @@ func _ready() -> void:
 	timer.start()
 
 func _physics_process(delta: float) -> void:
-	if (Input.is_action_just_pressed("ui_home")):
-		set_ring_visibility(true)
-	elif (Input.is_action_just_pressed("ui_end")):
-		set_ring_visibility(false)
+	
 	# REMOVE LATER: Tab and Shift Tab can be used to adjust ring size for testing
 	if (Input.is_action_just_pressed("ui_text_dedent")):
 		print("Ring Decrease")
