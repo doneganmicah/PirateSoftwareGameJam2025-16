@@ -107,6 +107,8 @@ func set_ring_size(size: int):
 	elif(not drawing_ring):
 		ringBody.scale = Vector2(size, size)
 
+func set_ring_visibility(show: bool):
+	sporeRing.visible = show
 
 func _on_timer_timeout() -> void:
 	# Get bodies interacting with the spore ring
