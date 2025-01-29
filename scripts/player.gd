@@ -102,7 +102,7 @@ func update_health_visual():
 func set_ring_size(size: int):
 	if(ringBody.scale != Vector2(size, size) and not drawing_ring):
 		drawing_ring = true
-		await get_tree().create_tween().tween_property(ringBody, "scale", Vector2(size,size), 0.30).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUART).finished
+		await get_tree().create_tween().tween_property(ringBody, "scale", Vector2(size,size), 0.30).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SPRING).finished
 		drawing_ring = false
 	elif(not drawing_ring):
 		ringBody.scale = Vector2(size, size)

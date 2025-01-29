@@ -15,6 +15,7 @@ const TIMER_WAIT_TIME = 0.5 # The amount of time between the timer timeouts.
 ################################################################################
 ## Child Nodes
 # Instance of the timer that is called when the player enteres the range of the stump
+@onready var particles: CPUParticles2D = $CPUParticles2D
 @onready var timer: Timer = $Timer
 
 ## Variables
@@ -32,6 +33,7 @@ var player : Player
 ################################################################################
 func _ready() -> void:
 	is_effecting = false
+	particles.emitting = false
 	timer.one_shot = false
 	timer.wait_time = TIMER_WAIT_TIME
 	#enable to the spore particles
@@ -47,6 +49,7 @@ func _on_player_enter(body : Node2D) -> void:
 		# A cheap way to get the instance of the player
 		player = body as Player
 		print("Enter log range")
+		particles.emitting = true
 		is_effecting = true
 		timer.start(TIMER_WAIT_TIME)
 
@@ -59,6 +62,7 @@ func _on_player_enter(body : Node2D) -> void:
 func _on_player_leave(body : Node2D) -> void:
 	if(body.is_in_group("player")):
 		print("left log range")
+		particles.emitting = false
 		is_effecting = false
 		timer.stop()
 
