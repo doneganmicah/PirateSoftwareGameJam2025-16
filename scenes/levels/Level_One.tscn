@@ -1,17 +1,21 @@
-[gd_scene load_steps=29 format=3 uid="uid://0s1d6nogb2vx"]
+[gd_scene load_steps=33 format=3 uid="uid://11ki6vtjt2cl"]
 
 [ext_resource type="PackedScene" uid="uid://dm8s68xm57ymb" path="res://scenes/ui_elements/health_bar.tscn" id="1_eeck2"]
-[ext_resource type="PackedScene" uid="uid://qpnbegdaqstg" path="res://scenes/player.tscn" id="1_gpid8"]
+[ext_resource type="PackedScene" uid="uid://qpnbegdaqstg" path="res://scenes/prefabs/player.tscn" id="1_gpid8"]
+[ext_resource type="Script" path="res://scripts/levels/level_one.gd" id="1_wgsa2"]
 [ext_resource type="Texture2D" uid="uid://d14f3hj5xqf6u" path="res://assets/level/Grass_Background_.png" id="2_gv7uu"]
 [ext_resource type="Texture2D" uid="uid://cseawkxsxy5ft" path="res://assets/level/Circle_Tree_Crown.png" id="3_pqtp7"]
 [ext_resource type="Texture2D" uid="uid://35f42vaxa6eq" path="res://assets/level/Rock_Doppelgänger_.png" id="4_2yxfp"]
+[ext_resource type="PackedScene" uid="uid://b5c1n863vmfr0" path="res://scenes/prefabs/enemy_test.tscn" id="4_6r4d2"]
 [ext_resource type="Texture2D" uid="uid://cj84qv0ekwunk" path="res://assets/level/Dirt_background.png" id="4_ansft"]
 [ext_resource type="Texture2D" uid="uid://byapxcui4neir" path="res://assets/level/Circle_Tree.png" id="5_4ikxw"]
 [ext_resource type="Texture2D" uid="uid://cuamigq25d6tb" path="res://assets/level/Stump.png" id="6_7w1jv"]
 [ext_resource type="Texture2D" uid="uid://uoxooyxk0xqd" path="res://assets/level/Bright Fuzzy_Tree_Crown_bush.png" id="7_t7b05"]
 [ext_resource type="Texture2D" uid="uid://boitjwil8qmbm" path="res://assets/level/Bright Fuzzy_Tree_Crown.png" id="8_jycsq"]
 [ext_resource type="Shader" path="res://assets/shaders/sprite_shadow.gdshader" id="10_rg44i"]
-[ext_resource type="PackedScene" path="res://scenes/calming_strump.tscn" id="12_hvtde"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hn0kw"]
+radius = 186.011
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ldsr3"]
 friction = 0.0
@@ -50,9 +54,12 @@ size = Vector2(1327, 29)
 shader = ExtResource("10_rg44i")
 shader_parameter/shadow_color = Color(0, 0, 0, 0.278431)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yc13l"]
-radius = 99.0
-height = 314.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6hars"]
+size = Vector2(72.0009, 310)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k8tvc"]
+radius = 71.9999
+height = 310.0
 
 [sub_resource type="Environment" id="Environment_j1mid"]
 
@@ -75,12 +82,37 @@ fill = 1
 fill_from = Vector2(0.858974, 0.512821)
 fill_to = Vector2(0, 0.491453)
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_rm0ij"]
+vertices = PackedVector2Array(-1560.12, -390.07, -1560.11, -390.063, -2222.08, -387, -2206.01, -669, -1921.96, -669.828, 504.422, -553.898, 477.352, -458.57, 456.758, -386.102, 384.953, -270.898, 270.438, -87.2109, -53.8672, -471.25, -57.0078, -541.453, 502.57, -682.977, -80.5625, -430, 119.453, 155, -2570.09, -383.109, -2572.9, -670.938, -1437.74, -668.992, -1278.26, -392.031, 794.258, -683.961, 797.719, -557.859, -1088.99, -225.844, -1243.84, -810.844, -1095.5, -919.359, -421.047, -590.75, -418.992, -513.313, -61.2266, -635.289, 389.18, -932.328, 84, -1136.19, 296.563, -1136, -117.133, -675.539, -122, -1136.36, -181.219, -684.992, -481.992, -1136.66, -284.703, -686.008, -692.008, -1136.84, -390.219, -670.023, -958.922, -1054.11, -874.898, -1136.99, -655.242, 155, -247.063, -430, -409.961, -432.117, -813.844, 15.75)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 8, 9, 10, 11, 12), PackedInt32Array(13, 10, 9, 14), PackedInt32Array(15, 16, 3, 2), PackedInt32Array(0, 4, 17, 18), PackedInt32Array(19, 20, 5, 12), PackedInt32Array(21, 18, 17, 22, 23, 24, 25), PackedInt32Array(12, 11, 26, 27), PackedInt32Array(28, 29, 27, 26, 30, 31), PackedInt32Array(31, 30, 32, 33), PackedInt32Array(33, 32, 34), PackedInt32Array(35, 33, 34, 36, 37, 38), PackedInt32Array(13, 14, 39, 40), PackedInt32Array(41, 40, 39, 42, 21), PackedInt32Array(25, 41, 21), PackedInt32Array(24, 23, 37, 36)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-2583, -681, -2206, -679, -1921.98, -679.842, -1441, -679, -1249.74, -818.916, -1102, -927, -965.94, -1061.23, -879, -1147, -691.997, -1146.84, -481.986, -1146.66, -121.99, -1146.36, 84.0081, -1146.19, 303, -1146, 398.285, -936.467, 509, -693, 804, -694, 808, -548, 512, -544, 486.968, -455.844, 466, -382, 393.441, -265.607, 278.932, -81.9237, 125, 165, -63.9894, 165, -337.989, 165, -659, 165, -820.436, 23.2574, -1095.58, -218.324, -1282, -382, -1560.05, -380.072, -2222, -377, -2580, -373), PackedVector2Array(-247, -440, -86, -440, -64, -474, -67, -541, -71, -630, -121, -666, -182, -675, -284, -676, -383, -661, -411, -589, -409, -514, -401, -442)])
+
 [node name="LevelOne" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_wgsa2")
 
 [node name="HealthBar" parent="." instance=ExtResource("1_eeck2")]
 
+[node name="LevelHandler" type="Node" parent="."]
+
+[node name="Player Transforms" type="Node" parent="LevelHandler"]
+
+[node name="End point" type="Area2D" parent="LevelHandler/Player Transforms"]
+z_index = 1
+position = Vector2(775, -623)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelHandler/Player Transforms/End point"]
+position = Vector2(15, 42)
+shape = SubResource("CircleShape2D_hn0kw")
+
+[node name="Start point" type="Node2D" parent="LevelHandler/Player Transforms"]
+position = Vector2(-2541, -526)
+
+[node name="Enemy Points" type="Node" parent="LevelHandler"]
+
 [node name="Player" parent="." instance=ExtResource("1_gpid8")]
-position = Vector2(-2257, -542)
+y_sort_enabled = true
+position = Vector2(-2544, -529)
 scale = Vector2(1.51138, 1.51138)
 wall_min_slide_angle = 3.14159
 floor_stop_on_slope = false
@@ -90,6 +122,48 @@ platform_floor_layers = 4278190080
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(6, -13)
 zoom = Vector2(1.2, 1.2)
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="enemy_test" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("4_6r4d2")]
+z_index = 5
+y_sort_enabled = true
+position = Vector2(123, -170)
+scale = Vector2(2.72495, 2.72495)
+cfg_enemy_act = 1
+cfg_enemy_patrol = 2
+player = NodePath("../../Player")
+
+[node name="ControlPoints" type="Node" parent="Enemies/enemy_test"]
+
+[node name="A" type="Node2D" parent="Enemies/enemy_test/ControlPoints"]
+position = Vector2(-650, -127)
+
+[node name="B" type="Node2D" parent="Enemies/enemy_test/ControlPoints"]
+position = Vector2(-286, -326)
+
+[node name="C" type="Node2D" parent="Enemies/enemy_test/ControlPoints"]
+position = Vector2(-203, 67)
+
+[node name="D" type="Node2D" parent="Enemies/enemy_test/ControlPoints"]
+position = Vector2(307, -474)
+
+[node name="E" type="Node2D" parent="Enemies/enemy_test/ControlPoints"]
+position = Vector2(165, -825)
+
+[node name="enemy_test2" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("4_6r4d2")]
+z_index = 5
+y_sort_enabled = true
+position = Vector2(-588, -566)
+scale = Vector2(2.63492, 2.63492)
+cfg_enemy_act = 1
+cfg_enemy_patrol = 3
+player = NodePath("../../Player")
+
+[node name="ControlPoints" type="Node" parent="Enemies/enemy_test2"]
+
+[node name="A" type="Node2D" parent="Enemies/enemy_test2/ControlPoints"]
+position = Vector2(-675, -555)
 
 [node name="Floor" type="Node2D" parent="."]
 
@@ -595,6 +669,20 @@ position = Vector2(212.995, -2236)
 rotation = 1.57079
 texture = ExtResource("3_pqtp7")
 
+[node name="CircleTreeCrown15" type="Sprite2D" parent="Shadows"]
+material = SubResource("ShaderMaterial_ypiio")
+position = Vector2(-138.008, -1253)
+rotation = 1.57079
+scale = Vector2(1.68, 1)
+texture = ExtResource("7_t7b05")
+
+[node name="CircleTreeCrown16" type="Sprite2D" parent="Shadows"]
+material = SubResource("ShaderMaterial_ypiio")
+position = Vector2(-141.007, -1103)
+rotation = 1.57079
+scale = Vector2(0.92, 1)
+texture = ExtResource("7_t7b05")
+
 [node name="CircleTreeCrown2" type="Sprite2D" parent="Shadows"]
 material = SubResource("ShaderMaterial_ypiio")
 position = Vector2(416.995, -2036)
@@ -685,104 +773,134 @@ texture = ExtResource("3_pqtp7")
 
 [node name="Decoration" type="Node2D" parent="."]
 z_index = 5
+y_sort_enabled = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Decoration"]
 position = Vector2(-249, -539)
 
 [node name="RockDoppelgänger" type="Sprite2D" parent="Decoration/StaticBody2D"]
-position = Vector2(10, -78)
+y_sort_enabled = true
+position = Vector2(14, -43)
 scale = Vector2(1.40837, 1.40837)
 texture = ExtResource("4_2yxfp")
+offset = Vector2(-2.13013, -22.7213)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Decoration/StaticBody2D"]
-position = Vector2(15, -35)
+position = Vector2(11.0001, -9.00049)
 rotation = 1.57079
-shape = SubResource("CapsuleShape2D_yc13l")
+shape = SubResource("RectangleShape2D_6hars")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Decoration/StaticBody2D"]
+position = Vector2(11, -45)
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_k8tvc")
 
 [node name="CircleTree" type="Sprite2D" parent="Decoration"]
+y_sort_enabled = true
 position = Vector2(-779, -1353)
 texture = ExtResource("5_4ikxw")
 
 [node name="CircleTree2" type="Sprite2D" parent="Decoration"]
+y_sort_enabled = true
 position = Vector2(-488, -1402)
 texture = ExtResource("5_4ikxw")
 
 [node name="CircleTree3" type="Sprite2D" parent="Decoration"]
+y_sort_enabled = true
 position = Vector2(-194, -1382)
 texture = ExtResource("5_4ikxw")
 
 [node name="CircleTree4" type="Sprite2D" parent="Decoration"]
+y_sort_enabled = true
 position = Vector2(254, -1339)
 texture = ExtResource("5_4ikxw")
 
 [node name="CircleTree5" type="Sprite2D" parent="Decoration"]
+y_sort_enabled = true
 position = Vector2(-1134, -1100)
 texture = ExtResource("5_4ikxw")
 
 [node name="CircleTree6" type="Sprite2D" parent="Decoration"]
+y_sort_enabled = true
 position = Vector2(-1609, -875)
 texture = ExtResource("5_4ikxw")
 
 [node name="CircleTree7" type="Sprite2D" parent="Decoration"]
+y_sort_enabled = true
 position = Vector2(-2471, -874)
 texture = ExtResource("5_4ikxw")
 
 [node name="CircleTree8" type="Sprite2D" parent="Decoration"]
+y_sort_enabled = true
 position = Vector2(-2036, -872)
 texture = ExtResource("5_4ikxw")
 
 [node name="Stump" type="Sprite2D" parent="Decoration"]
+y_sort_enabled = true
 position = Vector2(-2289, -750)
 scale = Vector2(0.337012, 0.337012)
 texture = ExtResource("6_7w1jv")
 
 [node name="Stump2" type="Sprite2D" parent="Decoration"]
+y_sort_enabled = true
 position = Vector2(-1312, -845)
 scale = Vector2(0.337012, 0.337012)
 texture = ExtResource("6_7w1jv")
 
 [node name="Stump3" type="Sprite2D" parent="Decoration"]
+y_sort_enabled = true
 position = Vector2(81, -1314)
 scale = Vector2(0.337012, 0.337012)
 texture = ExtResource("6_7w1jv")
 
 [node name="BrightFuzzyTreeCrownBush" type="Sprite2D" parent="Decoration"]
+y_sort_enabled = true
 position = Vector2(-619, -1203)
 texture = ExtResource("7_t7b05")
 
 [node name="BrightFuzzyTreeCrownBush2" type="Sprite2D" parent="Decoration"]
+y_sort_enabled = true
 position = Vector2(-1191, -877)
 texture = ExtResource("7_t7b05")
 
 [node name="BrightFuzzyTreeCrownBush3" type="Sprite2D" parent="Decoration"]
+y_sort_enabled = true
 position = Vector2(347, -1121)
 texture = ExtResource("7_t7b05")
 
 [node name="BrightFuzzyTreeCrownBush4" type="Sprite2D" parent="Decoration"]
+y_sort_enabled = true
 position = Vector2(-1799, -677)
 texture = ExtResource("7_t7b05")
 
 [node name="BrightFuzzyTreeCrownBush5" type="Sprite2D" parent="Decoration"]
+y_sort_enabled = true
 position = Vector2(-2588, -669)
 texture = ExtResource("7_t7b05")
 
 [node name="BrightFuzzyTreeCrownBush6" type="Sprite2D" parent="Decoration"]
+y_sort_enabled = true
 position = Vector2(-2449, -378)
 texture = ExtResource("7_t7b05")
 
 [node name="BrightFuzzyTreeCrownBush7" type="Sprite2D" parent="Decoration"]
+y_sort_enabled = true
 position = Vector2(-1292, -333)
 texture = ExtResource("7_t7b05")
 
 [node name="BrightFuzzyTreeCrownBush8" type="Sprite2D" parent="Decoration"]
+y_sort_enabled = true
 position = Vector2(-101, -483)
 texture = ExtResource("7_t7b05")
 
 [node name="BrightFuzzyTreeCrownBush9" type="Sprite2D" parent="Decoration"]
-position = Vector2(-375, -503)
+y_sort_enabled = true
+position = Vector2(-367, -492)
+rotation = 0.0950261
 texture = ExtResource("7_t7b05")
 
 [node name="BrightFuzzyTreeCrown" type="Sprite2D" parent="Decoration"]
+y_sort_enabled = true
 position = Vector2(-54, -1285)
 texture = ExtResource("8_jycsq")
 
@@ -791,20 +909,23 @@ texture = ExtResource("8_jycsq")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
 environment = SubResource("Environment_j1mid")
 
-[node name="GlobalLight" type="DirectionalLight2D" parent="Environment"]
+[node name="Light" type="Node" parent="Environment"]
+
+[node name="GlobalLight" type="DirectionalLight2D" parent="Environment/Light"]
 blend_mode = 1
 
-[node name="PointLight2D2" type="PointLight2D" parent="Environment"]
+[node name="PointLight2D2" type="PointLight2D" parent="Environment/Light"]
 position = Vector2(-860.5, -573.5)
 scale = Vector2(88.6094, 49.2969)
 texture = SubResource("GradientTexture2D_go3df")
 
-[node name="PointLight2D3" type="PointLight2D" parent="Environment"]
+[node name="PointLight2D3" type="PointLight2D" parent="Environment/Light"]
 position = Vector2(-1485.5, -529)
 scale = Vector2(68.9219, 28.375)
 blend_mode = 1
 texture = SubResource("GradientTexture2D_r4jog")
 
-[node name="CalmingStrump" parent="." instance=ExtResource("12_hvtde")]
-z_index = 1
-position = Vector2(-1849, -531)
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Environment"]
+navigation_polygon = SubResource("NavigationPolygon_rm0ij")
+
+[connection signal="body_entered" from="LevelHandler/Player Transforms/End point" to="." method="_player_entered_ending"]

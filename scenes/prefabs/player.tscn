@@ -131,11 +131,13 @@ sporeTickTimer = 1.0
 shape = SubResource("RectangleShape2D_h5l12")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -40)
+y_sort_enabled = true
+position = Vector2(0, -8)
 scale = Vector2(0.05, 0.05)
 sprite_frames = SubResource("SpriteFrames_5r007")
 animation = &"idle"
 autoplay = "idle"
+offset = Vector2(0, -640)
 
 [node name="SporeRing" type="Area2D" parent="."]
 position = Vector2(0, -4)

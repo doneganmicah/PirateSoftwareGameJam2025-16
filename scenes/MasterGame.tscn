@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcn870weytdsm"]
+
+[ext_resource type="Script" path="res://scripts/master_game.gd" id="1_mlq03"]
+[ext_resource type="PackedScene" uid="uid://fki2pdqj2461" path="res://scenes/levels/tests/test_menu.tscn" id="2_1v08e"]
+
+[node name="MasterGame" type="Node" node_paths=PackedStringArray("scene_2d", "gui")]
+script = ExtResource("1_mlq03")
+scene_2d = NodePath("2DScene")
+gui = NodePath("GUI")
+
+[node name="2DScene" type="Node2D" parent="."]
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TestMenu" parent="GUI" instance=ExtResource("2_1v08e")]
+layout_mode = 1
