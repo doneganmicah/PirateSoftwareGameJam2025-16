@@ -63,6 +63,3 @@ position = Vector2(401, 325)
 
 [node name="E" type="Node2D" parent="enemy_test/ControlPoints"]
 position = Vector2(274, 731)
-
-[node name="CalmingStrump" parent="." instance=ExtResource("4_b7cvd")]
-position = Vector2(733, 849)

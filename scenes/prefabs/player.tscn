@@ -146,38 +146,54 @@ position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_ho3dn")
 
 [node name="SporeEmitters" type="Node2D" parent="SporeRing/CollisionShape2D"]
-z_index = 5
+y_sort_enabled = true
 scale = Vector2(0.15, 0.15)
 
 [node name="SporeParticles" parent="SporeRing/CollisionShape2D/SporeEmitters" instance=ExtResource("5_3mviw")]
+z_index = 4
+y_sort_enabled = true
 
 [node name="SporeParticles2" parent="SporeRing/CollisionShape2D/SporeEmitters" instance=ExtResource("5_3mviw")]
+z_index = 4
+y_sort_enabled = true
 texture = ExtResource("6_pnqia")
 
 [node name="SporeParticles3" parent="SporeRing/CollisionShape2D/SporeEmitters" instance=ExtResource("5_3mviw")]
+z_index = 4
+y_sort_enabled = true
 texture = ExtResource("7_4uf0y")
 
 [node name="SporeParticles4" parent="SporeRing/CollisionShape2D/SporeEmitters" instance=ExtResource("5_3mviw")]
+z_index = 4
+y_sort_enabled = true
 texture = ExtResource("8_s2cv6")
 
 [node name="SporeParticles5" parent="SporeRing/CollisionShape2D/SporeEmitters" instance=ExtResource("5_3mviw")]
+z_index = 4
+y_sort_enabled = true
 texture = ExtResource("9_uejfe")
 
 [node name="SporeParticles6" parent="SporeRing/CollisionShape2D/SporeEmitters" instance=ExtResource("5_3mviw")]
+z_index = 4
+y_sort_enabled = true
 texture = ExtResource("10_fgcpv")
 
 [node name="SporeParticles7" parent="SporeRing/CollisionShape2D/SporeEmitters" instance=ExtResource("5_3mviw")]
+z_index = 4
+y_sort_enabled = true
 texture = ExtResource("11_dkbqw")
 
 [node name="Sprite2D" type="Sprite2D" parent="SporeRing/CollisionShape2D"]
 visible = false
 z_index = -1
+y_sort_enabled = true
 scale = Vector2(0.013, 0.013)
 texture = ExtResource("4_rh5kp")
 
 [node name="SporeRingRim1" type="CPUParticles2D" parent="SporeRing/CollisionShape2D"]
-z_index = 5
+z_index = 4
 z_as_relative = false
+y_sort_enabled = true
 scale = Vector2(0.013, 0.013)
 amount = 75
 local_coords = true
@@ -190,8 +206,9 @@ gravity = Vector2(0, 0)
 color = Color(0.61936, 0.79, 0.6004, 0.74902)
 
 [node name="SporeRingRim2" type="CPUParticles2D" parent="SporeRing/CollisionShape2D"]
-z_index = 5
+z_index = 4
 z_as_relative = false
+y_sort_enabled = true
 scale = Vector2(0.013, 0.013)
 amount = 75
 local_coords = true
