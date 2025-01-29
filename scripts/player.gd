@@ -34,7 +34,10 @@ func _ready() -> void:
 	timer.start()
 
 func _physics_process(delta: float) -> void:
-	
+	if (Input.is_action_just_pressed("ui_home")):
+		set_ring_visibility(true)
+	elif (Input.is_action_just_pressed("ui_end")):
+		set_ring_visibility(false)
 	# REMOVE LATER: Tab and Shift Tab can be used to adjust ring size for testing
 	if (Input.is_action_just_pressed("ui_text_dedent")):
 		print("Ring Decrease")
@@ -96,6 +99,8 @@ func update_health_visual():
 func set_ring_size(size: int):
 	ringBody.scale = Vector2(size, size)
 
+func set_ring_visibility(show: bool):
+	sporeRing.visible = show
 
 func _on_timer_timeout() -> void:
 	# Get bodies interacting with the spore ring
