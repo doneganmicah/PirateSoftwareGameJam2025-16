@@ -1,13 +1,13 @@
 [gd_scene load_steps=7 format=3 uid="uid://b5c1n863vmfr0"]
 
-[ext_resource type="Script" path="res://scripts/enemy_test.gd" id="1_vjmcy"]
-[ext_resource type="Texture2D" uid="uid://cd0cns2fwh1ek" path="res://assets/tests/Placeholder.png" id="2_6vmps"]
+[ext_resource type="Script" path="res://scripts/testing/enemy_test.gd" id="1_2dsph"]
+[ext_resource type="Texture2D" uid="uid://cd0cns2fwh1ek" path="res://assets/tests/Placeholder.png" id="2_q1mmv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_aw35g"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_6vmps")
+"texture": ExtResource("2_q1mmv")
 }],
 "loop": true,
 "name": &"default",
@@ -28,7 +28,7 @@ floor_stop_on_slope = false
 floor_block_on_wall = false
 platform_on_leave = 2
 platform_floor_layers = 4294901760
-script = ExtResource("1_vjmcy")
+script = ExtResource("1_2dsph")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.0818452, 0.0818452)

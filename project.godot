@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="PirateSoftwareGameJam2025-16"
+run/main_scene="res://scenes/MasterGame.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -18,6 +19,7 @@ config/icon="res://icon.svg"
 
 CanvasDialog="*res://scenes/ui_elements/canvas_dialog.tscn"
 Dialogs="*res://scripts/refs/dialogs.gd"
+Globals="*res://scripts/refs/globals.gd"
 
 [editor]
 
@@ -68,3 +70,4 @@ skip_dialog={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

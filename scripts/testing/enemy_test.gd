@@ -3,13 +3,18 @@ extends Enemy
 var hitting = false
 var attack_cooled = true
 
+@export var cfg_enemy_type : ENEMY_TYPES = ENEMY_TYPES.PLACEHOLDER
+@export var cfg_enemy_act : ENEMY_ACTIVITIES = ENEMY_ACTIVITIES.DEFAULT
+@export var cfg_enemy_patrol : ENEMY_PATROLS = ENEMY_PATROLS.DEFAULT
+@export var player : Player
+
 func _ready() -> void:
 	
 	set_physics_process(false)
 	call_deferred("enemies_setup")
 	
 	print("Setting up enemy")
-	_initialize_enemy(ENEMY_TYPES.PLACEHOLDER, ENEMY_ACTIVITIES.PATROLING, 0, ENEMY_PATROLS.AREA)
+	_initialize_enemy(cfg_enemy_type, cfg_enemy_act, 0, cfg_enemy_patrol)
 
 func enemies_setup():
 	# Skip the first frame to prevent race condition before nav server syncs
@@ -26,15 +31,16 @@ func _physics_process(delta: float) -> void:
 			velocity = await get_patroling_vector() * enemy_speed
 		# The enemy is currently pursuing the player.
 		ENEMY_ACTIVITIES.ATACKING:
-			velocity = get_attacking_vector($"../Player") * (enemy_speed * 0.75)
+			velocity = get_attacking_vector(player) * (enemy_speed * 0.75)
 		# The enemy is attacking the player.
 		ENEMY_ACTIVITIES.HITTING:
 			if(not hitting && attack_cooled):
-				velocity = get_attacking_vector($"../Player") * enemy_speed
+				velocity = get_attacking_vector(player) * enemy_speed
 				hitting = true
 				attack_cooled = false
 				await get_tree().create_timer(0.20).timeout
-				for body : CharacterBody2D in range_area.get_overlapping_bodies():
+				for body in range_area.get_overlapping_bodies():
+					if(body is not CharacterBody2D): continue
 					# This code is botched and there has to be a better way to do it.
 					if(body.is_in_group("player")):
 						var player = body as Player
@@ -44,7 +50,7 @@ func _physics_process(delta: float) -> void:
 				await get_tree().create_timer(1).timeout
 				attack_cooled = true
 			elif(attack_cooled == false):
-				velocity = get_attacking_vector($"../Player") * enemy_speed
+				velocity = get_attacking_vector(player) * enemy_speed
 			else:
 				velocity = Vector2.ZERO
 	move_and_slide()

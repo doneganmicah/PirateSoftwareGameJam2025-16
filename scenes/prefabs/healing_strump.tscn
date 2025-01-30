@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://di6xce1ric4yn"]
 
-[ext_resource type="Script" path="res://scripts/healing_strump.gd" id="1_0n7r7"]
+[ext_resource type="Script" path="res://scripts/game_objects/healing_strump.gd" id="1_0n7r7"]
 [ext_resource type="Texture2D" uid="uid://ci1xyjg4rci33" path="res://assets/tests/placeholderStump.png" id="2_0hvfb"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_72iiv"]

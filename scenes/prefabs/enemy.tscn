@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://c0btscpuj5pgl"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_y478f"]
+[ext_resource type="Script" path="res://scripts/enemies/enemy.gd" id="1_y478f"]
 [ext_resource type="Texture2D" uid="uid://cd0cns2fwh1ek" path="res://assets/tests/Placeholder.png" id="2_d4hek"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cmgkb"]
