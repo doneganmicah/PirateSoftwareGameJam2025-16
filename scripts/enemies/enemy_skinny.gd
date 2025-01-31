@@ -53,7 +53,7 @@ func _physics_process(delta: float) -> void:
 				instance.global_position = self.global_position
 				instance.direction = player.global_position - self.global_position 
 				instance.node = proj_node
-				proj_node.add_child.call_deferred(instance)
+				
 				instance.shot()
 				await get_tree().create_timer(2).timeout
 				hitting = false
@@ -67,7 +67,7 @@ func _physics_process(delta: float) -> void:
 		elif velocity.x < 0:
 			animated_sprite_2d.flip_h = true
 		
-		animated_sprite_2d.play("skinny_walk")
+			animated_sprite_2d.play("skinny_walk")
 		else:
 			animated_sprite_2d.play("skinny_idle")
 	move_and_slide()

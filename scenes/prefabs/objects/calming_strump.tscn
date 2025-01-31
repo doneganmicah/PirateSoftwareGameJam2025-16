@@ -1,22 +1,42 @@
-[gd_scene load_steps=5 format=3 uid="uid://di6xce1ric4yn"]
+[gd_scene load_steps=9 format=3 uid="uid://di6xce1ric4yn"]
 
-[ext_resource type="Script" path="res://scripts/calming_strump.gd" id="1_d5fmy"]
+[ext_resource type="Script" path="res://scripts/game_objects/calming_strump.gd" id="1_d5fmy"]
 [ext_resource type="Texture2D" uid="uid://7hbmo3s14s4y" path="res://assets/Stump.png" id="2_tkxub"]
 [ext_resource type="Texture2D" uid="uid://dty5hrutm3sui" path="res://assets/player/spores/Spore4.png" id="3_dfko4"]
+[ext_resource type="Shader" path="res://assets/shaders/sprite_shadow.gdshader" id="3_k1upc"]
+[ext_resource type="Texture2D" uid="uid://pb7v3g38c3xa" path="res://assets/player/spores/Spore2.png" id="4_lh40b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w0o40"]
+shader = ExtResource("3_k1upc")
+shader_parameter/shadow_color = Color(0, 0, 0, 0.458824)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dhasv"]
 radius = 20.025
 
-[node name="CalmingStrump" type="Node2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aboq7"]
+height = 138.0
+
+[node name="CalmingStrump" type="StaticBody2D"]
+y_sort_enabled = true
 script = ExtResource("1_d5fmy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 5
 y_sort_enabled = true
+position = Vector2(1, 0)
 scale = Vector2(0.55023, 0.55023)
 texture = ExtResource("2_tkxub")
+offset = Vector2(-0.80419, -93.4927)
+
+[node name="shadow" type="Sprite2D" parent="Sprite2D"]
+z_index = -1
+material = SubResource("ShaderMaterial_w0o40")
+position = Vector2(16.3568, 58.1575)
+scale = Vector2(3.16292, 1.32758)
+texture = ExtResource("4_lh40b")
+offset = Vector2(-4.59682, -19.1656)
 
 [node name="RangeOfEffect" type="Area2D" parent="."]
+position = Vector2(0.55751, -51.4425)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RangeOfEffect"]
 position = Vector2(0, 17)
@@ -27,7 +47,9 @@ shape = SubResource("CircleShape2D_dhasv")
 wait_time = 0.5
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-position = Vector2(0, -40)
+z_index = 1
+y_sort_enabled = true
+position = Vector2(0.55751, -91.4425)
 amount = 25
 lifetime = 2.5
 texture = ExtResource("3_dfko4")
@@ -40,6 +62,11 @@ initial_velocity_max = 75.0
 scale_amount_min = 0.1
 scale_amount_max = 0.1
 color = Color(0, 2.162, 100, 0.464)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_aboq7")
 
 [connection signal="body_entered" from="RangeOfEffect" to="." method="_on_player_enter"]
 [connection signal="body_exited" from="RangeOfEffect" to="." method="_on_player_leave"]

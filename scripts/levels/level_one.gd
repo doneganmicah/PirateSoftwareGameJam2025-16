@@ -1,17 +1,12 @@
 extends Level
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
+	Signals.player_died.connect(reset)
 
 
 func _player_entered_ending(body: Node2D) -> void:
 	if (body.is_in_group("player")):
 		end_level(Globals.scenes.test_level)
+
+func reset():
+	Globals.game_controller.change_2d_scene(Scenes.level_one)
