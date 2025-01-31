@@ -19,7 +19,6 @@ var drawing_ring = false
 @onready var sporeRing = $SporeRing
 @onready var ringBody: CollisionShape2D = $SporeRing/CollisionShape2D
 @onready var timer = $Timer
-@onready var walking_particles: CPUParticles2D = $CPUParticles2D
 
 @export var playerAnimation: AnimatedSprite2D
 @export var sporeTickTimer: float
@@ -60,11 +59,9 @@ func _physics_process(delta: float) -> void:
 			playerAnimation.flip_h = true
 		
 		playerAnimation.play("move")
-		walking_particles.emitting = true
 		velocity = direction * SPEED
 	else:
 		playerAnimation.play("idle")
-		walking_particles.emitting = false
 		velocity = Vector2.ZERO
 	
 	move_and_slide()
@@ -77,6 +74,9 @@ func receive_damage(damage_amount: int):
 	health -= damage_amount	
 	# Adjust Health Visual
 	update_health_visual()
+	playerAnimation.material = Globals.DAMAGE_FLASH
+	await get_tree().create_timer(0.15).timeout
+	playerAnimation.material = null
 	if(health <= 0):
 		has_died()
 	return	

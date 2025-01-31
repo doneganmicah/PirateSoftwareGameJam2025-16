@@ -4,7 +4,6 @@ var hitting = false
 var attack_cooled = true
 var cooling = false
 var can_hit = false
-@onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 
 @export var cfg_enemy_type : ENEMY_TYPES = ENEMY_TYPES.PLACEHOLDER
 @export var cfg_enemy_act : ENEMY_ACTIVITIES = ENEMY_ACTIVITIES.DEFAULT
@@ -81,9 +80,7 @@ func _physics_process(delta: float) -> void:
 			animated_sprite_2d.flip_h = true
 		
 		animated_sprite_2d.play("gobbie_walk")
-		cpu_particles_2d.emitting = true
 	else:
-		cpu_particles_2d.emitting = false
 		animated_sprite_2d.play("gobbie_idle")
 	
 	move_and_slide()

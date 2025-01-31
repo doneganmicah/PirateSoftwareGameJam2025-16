@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://qpnbegdaqstg"]
+[gd_scene load_steps=27 format=3 uid="uid://qpnbegdaqstg"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_4opyj"]
 [ext_resource type="Texture2D" uid="uid://dtt37u7atmdke" path="res://assets/player/PlayerWalk.PNG" id="2_oijom"]
@@ -7,13 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://cc2ms6q4wy1hm" path="res://assets/player/spore_ring.png" id="4_rh5kp"]
 [ext_resource type="PackedScene" uid="uid://b3wgbo5sq4ca8" path="res://scenes/spore_particles.tscn" id="5_3mviw"]
 [ext_resource type="Texture2D" uid="uid://pb7v3g38c3xa" path="res://assets/player/spores/Spore2.png" id="6_pnqia"]
-[ext_resource type="Texture2D" uid="uid://btax87xx60rcm" path="res://assets/player/spores/Spore3.png" id="7_4uf0y"]
 [ext_resource type="Material" uid="uid://bkcgkcc2b263j" path="res://assets/shaders/player_spores.tres" id="7_dd66t"]
-[ext_resource type="Texture2D" uid="uid://dty5hrutm3sui" path="res://assets/player/spores/Spore4.png" id="8_s2cv6"]
 [ext_resource type="Texture2D" uid="uid://csqo5e7uojenf" path="res://assets/player/spores/Spore5.png" id="9_uejfe"]
 [ext_resource type="Texture2D" uid="uid://devhqcuvf8msf" path="res://assets/player/spores/Spore6.png" id="10_fgcpv"]
-[ext_resource type="Texture2D" uid="uid://cijrnq3l0mdor" path="res://assets/player/spores/Spore7.png" id="11_dkbqw"]
-[ext_resource type="Texture2D" uid="uid://b541ialn5f0f8" path="res://assets/player/spores/Spore1.png" id="14_k3w7w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h5l12"]
 size = Vector2(38, 18)
@@ -126,23 +122,6 @@ shader_parameter/shadow_color = Color(0, 0, 0, 0.458824)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ho3dn"]
 
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_841fi"]
-frames = 7
-pause = true
-frame_0/texture = ExtResource("14_k3w7w")
-frame_1/texture = ExtResource("6_pnqia")
-frame_1/duration = 1.0
-frame_2/texture = ExtResource("7_4uf0y")
-frame_2/duration = 1.0
-frame_3/texture = ExtResource("8_s2cv6")
-frame_3/duration = 1.0
-frame_4/texture = ExtResource("9_uejfe")
-frame_4/duration = 1.0
-frame_5/texture = ExtResource("10_fgcpv")
-frame_5/duration = 1.0
-frame_6/texture = ExtResource("11_dkbqw")
-frame_6/duration = 1.0
-
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("playerAnimation") groups=["player"]]
 z_index = 5
 platform_on_leave = 2
@@ -184,48 +163,15 @@ scale = Vector2(0.15, 0.15)
 z_index = 4
 y_sort_enabled = true
 material = ExtResource("7_dd66t")
+amount = 16
 color = Color(1, 1, 1, 1)
 
 [node name="SporeParticles2" parent="SporeRing/CollisionShape2D/SporeEmitters" instance=ExtResource("5_3mviw")]
 z_index = 4
 y_sort_enabled = true
 material = ExtResource("7_dd66t")
+amount = 16
 texture = ExtResource("6_pnqia")
-color = Color(1, 1, 1, 1)
-
-[node name="SporeParticles3" parent="SporeRing/CollisionShape2D/SporeEmitters" instance=ExtResource("5_3mviw")]
-z_index = 4
-y_sort_enabled = true
-material = ExtResource("7_dd66t")
-texture = ExtResource("7_4uf0y")
-color = Color(1, 1, 1, 1)
-
-[node name="SporeParticles4" parent="SporeRing/CollisionShape2D/SporeEmitters" instance=ExtResource("5_3mviw")]
-z_index = 4
-y_sort_enabled = true
-material = ExtResource("7_dd66t")
-texture = ExtResource("8_s2cv6")
-color = Color(1, 1, 1, 1)
-
-[node name="SporeParticles5" parent="SporeRing/CollisionShape2D/SporeEmitters" instance=ExtResource("5_3mviw")]
-z_index = 4
-y_sort_enabled = true
-material = ExtResource("7_dd66t")
-texture = ExtResource("9_uejfe")
-color = Color(1, 1, 1, 1)
-
-[node name="SporeParticles6" parent="SporeRing/CollisionShape2D/SporeEmitters" instance=ExtResource("5_3mviw")]
-z_index = 4
-y_sort_enabled = true
-material = ExtResource("7_dd66t")
-texture = ExtResource("10_fgcpv")
-color = Color(1, 1, 1, 1)
-
-[node name="SporeParticles7" parent="SporeRing/CollisionShape2D/SporeEmitters" instance=ExtResource("5_3mviw")]
-z_index = 4
-y_sort_enabled = true
-material = ExtResource("7_dd66t")
-texture = ExtResource("11_dkbqw")
 color = Color(1, 1, 1, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="SporeRing/CollisionShape2D"]
@@ -266,21 +212,5 @@ emission_colors = PackedColorArray()
 gravity = Vector2(0, 0)
 
 [node name="Timer" type="Timer" parent="."]
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-z_index = -1
-material = ExtResource("7_dd66t")
-amount = 32
-speed_scale = 0.71
-lifetime_randomness = 0.18
-texture = SubResource("AnimatedTexture_841fi")
-emission_shape = 1
-emission_sphere_radius = 3.33
-spread = 172.5
-gravity = Vector2(0, 0)
-initial_velocity_min = 4.55
-initial_velocity_max = 22.73
-scale_amount_min = 0.0
-scale_amount_max = 0.1
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

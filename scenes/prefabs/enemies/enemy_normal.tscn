@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://wiyd4gihhlh7"]
+[gd_scene load_steps=56 format=3 uid="uid://wiyd4gihhlh7"]
 
 [ext_resource type="Script" path="res://scripts/enemies/enemy_normal.gd" id="1_wdygi"]
 [ext_resource type="Texture2D" uid="uid://ctx60d8h0kwnd" path="res://assets/enemies/Beeeg_Boi_Jump_Cycle2.png" id="2_kyauv"]
@@ -8,13 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://b5sudbbnyfigj" path="res://assets/enemies/Skinny_Shroom_Walk_Cycle.png" id="6_r2qsn"]
 [ext_resource type="Shader" path="res://assets/shaders/sprite_shadow.gdshader" id="7_2cfo8"]
 [ext_resource type="Texture2D" uid="uid://pb7v3g38c3xa" path="res://assets/player/spores/Spore2.png" id="8_qp4i1"]
-[ext_resource type="Shader" path="res://assets/shaders/spore_emitted_shader.gdshader" id="9_j7qfn"]
-[ext_resource type="Texture2D" uid="uid://b541ialn5f0f8" path="res://assets/player/spores/Spore1.png" id="10_7cy1o"]
-[ext_resource type="Texture2D" uid="uid://btax87xx60rcm" path="res://assets/player/spores/Spore3.png" id="11_nwvpm"]
-[ext_resource type="Texture2D" uid="uid://dty5hrutm3sui" path="res://assets/player/spores/Spore4.png" id="12_45bec"]
-[ext_resource type="Texture2D" uid="uid://csqo5e7uojenf" path="res://assets/player/spores/Spore5.png" id="13_f42uu"]
-[ext_resource type="Texture2D" uid="uid://devhqcuvf8msf" path="res://assets/player/spores/Spore6.png" id="14_0gbej"]
-[ext_resource type="Texture2D" uid="uid://cijrnq3l0mdor" path="res://assets/player/spores/Spore7.png" id="15_1bq8w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5vnfe"]
 atlas = ExtResource("2_kyauv")
@@ -366,27 +359,6 @@ radius = 7.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_2p6qr"]
 radius = 87.0057
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_onvmu"]
-shader = ExtResource("9_j7qfn")
-shader_parameter/color = Color(0.815686, 0.866667, 0.603922, 1)
-
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_howvg"]
-frames = 7
-pause = true
-frame_0/texture = ExtResource("10_7cy1o")
-frame_1/texture = ExtResource("8_qp4i1")
-frame_1/duration = 1.0
-frame_2/texture = ExtResource("11_nwvpm")
-frame_2/duration = 1.0
-frame_3/texture = ExtResource("12_45bec")
-frame_3/duration = 1.0
-frame_4/texture = ExtResource("13_f42uu")
-frame_4/duration = 1.0
-frame_5/texture = ExtResource("14_0gbej")
-frame_5/duration = 1.0
-frame_6/texture = ExtResource("15_1bq8w")
-frame_6/duration = 1.0
-
 [node name="enemy_normal" type="CharacterBody2D" groups=["enemy"]]
 z_index = 5
 y_sort_enabled = true
@@ -439,23 +411,6 @@ shape = SubResource("CircleShape2D_2p6qr")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
-debug_enabled = true
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-z_index = -1
-material = SubResource("ShaderMaterial_onvmu")
-amount = 16
-speed_scale = 0.71
-lifetime_randomness = 0.18
-texture = SubResource("AnimatedTexture_howvg")
-emission_shape = 1
-emission_sphere_radius = 1.0
-spread = 172.5
-gravity = Vector2(0, 0)
-initial_velocity_min = 4.55
-initial_velocity_max = 22.73
-scale_amount_min = 0.0
-scale_amount_max = 0.1
 
 [connection signal="body_entered" from="MeleeAttackEffectiveRange" to="." method="_player_entered_attack_range"]
 [connection signal="body_exited" from="MeleeAttackEffectiveRange" to="." method="_player_left_attack_range"]

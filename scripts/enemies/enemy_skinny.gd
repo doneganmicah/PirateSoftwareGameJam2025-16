@@ -12,7 +12,6 @@ var attack_cooled = true
 
 @onready var proj_node: Node = $ProjectilesLiveHere
 @onready var projectile = load("res://scenes/prefabs/enemies/projectile.tscn")
-@onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 
 
 @export var patrol_speed = 150
@@ -69,10 +68,8 @@ func _physics_process(delta: float) -> void:
 			animated_sprite_2d.flip_h = true
 		
 		animated_sprite_2d.play("skinny_walk")
-		cpu_particles_2d.emitting = true
-	else:
-		cpu_particles_2d.emitting = false
-		animated_sprite_2d.play("skinny_idle")
+		else:
+			animated_sprite_2d.play("skinny_idle")
 	move_and_slide()
 
 

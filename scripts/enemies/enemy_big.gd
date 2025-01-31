@@ -9,7 +9,7 @@ var attack_cooled = true
 @export var cfg_health = 3
 @export var cfg_damage = 1
 @export var cfg_speed = 300
-@onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
+
 
 @export var patrol_speed = 150
 @export var chase_speed = 300
@@ -74,9 +74,7 @@ func _physics_process(delta: float) -> void:
 			animated_sprite_2d.flip_h = true
 		
 		animated_sprite_2d.play("big_boi_jump")
-		cpu_particles_2d.emitting = true
 	else:
-		cpu_particles_2d.emitting = false
 		animated_sprite_2d.play("big_boi_idle")
 	move_and_slide()
 

@@ -48,8 +48,7 @@ const DEFAULT_MASS = 1
 	get: return animated_sprite_2d
 # Instance of the Control points node
 @onready var control_points: Node = $ControlPoints
-# instance of material for damage flash
-@onready var DAMAGE_FLASH : Material = preload("res://assets/shaders/damage_flash.tres")
+
 
 
 @export var player : Player
@@ -362,7 +361,7 @@ func AI_steering(current_velocity: Vector2, current_position: Vector2, target_po
 func take_damage(damage_amount : float) -> bool:
 	# Visual Damage Indication
 	self.enemy_health -= damage_amount
-	animated_sprite_2d.material = DAMAGE_FLASH
+	animated_sprite_2d.material = Globals.DAMAGE_FLASH
 	await get_tree().create_timer(0.15).timeout
 	animated_sprite_2d.material = null
 	if (self.enemy_health <= 0):
