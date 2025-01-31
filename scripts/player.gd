@@ -19,6 +19,7 @@ var drawing_ring = false
 @onready var sporeRing = $SporeRing
 @onready var ringBody: CollisionShape2D = $SporeRing/CollisionShape2D
 @onready var timer = $Timer
+@onready var walking_particles: CPUParticles2D = $CPUParticles2D
 
 @export var playerAnimation: AnimatedSprite2D
 @export var sporeTickTimer: float
@@ -59,11 +60,11 @@ func _physics_process(delta: float) -> void:
 			playerAnimation.flip_h = true
 		
 		playerAnimation.play("move")
-		
+		walking_particles.emitting = true
 		velocity = direction * SPEED
 	else:
 		playerAnimation.play("idle")
-		
+		walking_particles.emitting = false
 		velocity = Vector2.ZERO
 	
 	move_and_slide()

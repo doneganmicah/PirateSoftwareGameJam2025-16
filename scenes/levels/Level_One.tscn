@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://11ki6vtjt2cl"]
+[gd_scene load_steps=34 format=3 uid="uid://11ki6vtjt2cl"]
 
 [ext_resource type="PackedScene" uid="uid://dm8s68xm57ymb" path="res://scenes/ui_elements/health_bar.tscn" id="1_eeck2"]
 [ext_resource type="PackedScene" uid="uid://qpnbegdaqstg" path="res://scenes/prefabs/player.tscn" id="1_gpid8"]
@@ -6,9 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://d14f3hj5xqf6u" path="res://assets/level/Grass_Background_.png" id="2_gv7uu"]
 [ext_resource type="Texture2D" uid="uid://cseawkxsxy5ft" path="res://assets/level/Circle_Tree_Crown.png" id="3_pqtp7"]
 [ext_resource type="Texture2D" uid="uid://35f42vaxa6eq" path="res://assets/level/Rock_Doppelgänger_.png" id="4_2yxfp"]
-[ext_resource type="PackedScene" uid="uid://b5c1n863vmfr0" path="res://scenes/prefabs/enemy_test.tscn" id="4_6r4d2"]
+[ext_resource type="PackedScene" uid="uid://wiyd4gihhlh7" path="res://scenes/prefabs/enemies/enemy_normal.tscn" id="4_6vtc6"]
 [ext_resource type="Texture2D" uid="uid://cj84qv0ekwunk" path="res://assets/level/Dirt_background.png" id="4_ansft"]
 [ext_resource type="Texture2D" uid="uid://byapxcui4neir" path="res://assets/level/Circle_Tree.png" id="5_4ikxw"]
+[ext_resource type="PackedScene" uid="uid://bkpc42ubiksds" path="res://scenes/prefabs/enemies/enemy_big.tscn" id="5_r6wm0"]
 [ext_resource type="Texture2D" uid="uid://cuamigq25d6tb" path="res://assets/level/Stump.png" id="6_7w1jv"]
 [ext_resource type="Texture2D" uid="uid://uoxooyxk0xqd" path="res://assets/level/Bright Fuzzy_Tree_Crown_bush.png" id="7_t7b05"]
 [ext_resource type="Texture2D" uid="uid://boitjwil8qmbm" path="res://assets/level/Bright Fuzzy_Tree_Crown.png" id="8_jycsq"]
@@ -112,7 +113,7 @@ position = Vector2(-2541, -526)
 
 [node name="Player" parent="." instance=ExtResource("1_gpid8")]
 y_sort_enabled = true
-position = Vector2(-2544, -529)
+position = Vector2(-2539, -528)
 scale = Vector2(1.51138, 1.51138)
 wall_min_slide_angle = 3.14159
 floor_stop_on_slope = false
@@ -123,47 +124,62 @@ platform_floor_layers = 4278190080
 position = Vector2(6, -13)
 zoom = Vector2(1.2, 1.2)
 
-[node name="Enemies" type="Node" parent="."]
-
-[node name="enemy_test" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("4_6r4d2")]
-z_index = 5
+[node name="Enemies" type="Node2D" parent="."]
 y_sort_enabled = true
-position = Vector2(123, -170)
-scale = Vector2(2.72495, 2.72495)
-cfg_enemy_act = 1
-cfg_enemy_patrol = 2
-player = NodePath("../../Player")
 
-[node name="ControlPoints" type="Node" parent="Enemies/enemy_test"]
-
-[node name="A" type="Node2D" parent="Enemies/enemy_test/ControlPoints"]
-position = Vector2(-650, -127)
-
-[node name="B" type="Node2D" parent="Enemies/enemy_test/ControlPoints"]
-position = Vector2(-286, -326)
-
-[node name="C" type="Node2D" parent="Enemies/enemy_test/ControlPoints"]
-position = Vector2(-203, 67)
-
-[node name="D" type="Node2D" parent="Enemies/enemy_test/ControlPoints"]
-position = Vector2(307, -474)
-
-[node name="E" type="Node2D" parent="Enemies/enemy_test/ControlPoints"]
-position = Vector2(165, -825)
-
-[node name="enemy_test2" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("4_6r4d2")]
-z_index = 5
-y_sort_enabled = true
-position = Vector2(-588, -566)
-scale = Vector2(2.63492, 2.63492)
+[node name="enemy_guarding" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("4_6vtc6")]
+position = Vector2(-514, -685)
+scale = Vector2(3.24302, 3.24302)
+cfg_enemy_type = 1
 cfg_enemy_act = 1
 cfg_enemy_patrol = 3
 player = NodePath("../../Player")
 
-[node name="ControlPoints" type="Node" parent="Enemies/enemy_test2"]
+[node name="ControlPoints" type="Node" parent="Enemies/enemy_guarding"]
 
-[node name="A" type="Node2D" parent="Enemies/enemy_test2/ControlPoints"]
-position = Vector2(-675, -555)
+[node name="A" type="Node2D" parent="Enemies/enemy_guarding/ControlPoints"]
+position = Vector2(-660, -546)
+
+[node name="enemy_patroling" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("4_6vtc6")]
+position = Vector2(-13, -10)
+scale = Vector2(3.11088, 3.11088)
+cfg_enemy_type = 1
+cfg_enemy_act = 1
+cfg_enemy_patrol = 2
+player = NodePath("../../Player")
+
+[node name="ControlPoints" type="Node" parent="Enemies/enemy_patroling"]
+
+[node name="A" type="Node2D" parent="Enemies/enemy_patroling/ControlPoints"]
+position = Vector2(-716, -115)
+
+[node name="A2" type="Node2D" parent="Enemies/enemy_patroling/ControlPoints"]
+position = Vector2(162, -493)
+
+[node name="A3" type="Node2D" parent="Enemies/enemy_patroling/ControlPoints"]
+position = Vector2(132, -111)
+
+[node name="A4" type="Node2D" parent="Enemies/enemy_patroling/ControlPoints"]
+position = Vector2(-1, -902)
+
+[node name="enemy_big_boi" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("5_r6wm0")]
+position = Vector2(352, -611)
+scale = Vector2(3.37613, 3.37613)
+cfg_enemy_type = 1
+cfg_enemy_act = 1
+cfg_enemy_patrol = 3
+cfg_health = 10
+cfg_damage = 2
+cfg_speed = 150
+chase_speed = 150
+steer_weight = 70
+player = NodePath("../../Player")
+
+[node name="ControlPoints" type="Node" parent="Enemies/enemy_big_boi"]
+
+[node name="A" type="Node2D" parent="Enemies/enemy_big_boi/ControlPoints"]
+position = Vector2(353, -609)
+rotation = 0.00145816
 
 [node name="Floor" type="Node2D" parent="."]
 
@@ -189,6 +205,8 @@ uv = PackedVector2Array(919.149, 399.702, 957.925, 447.094, 1008.39, 477.252, 11
 
 [node name="Boundery" type="StaticBody2D" parent="Floor"]
 position = Vector2(8, 122)
+collision_layer = 2049
+collision_mask = 2049
 physics_material_override = SubResource("PhysicsMaterial_ldsr3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/Boundery"]
@@ -777,6 +795,8 @@ y_sort_enabled = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Decoration"]
 position = Vector2(-249, -539)
+collision_layer = 2049
+collision_mask = 2049
 
 [node name="RockDoppelgänger" type="Sprite2D" parent="Decoration/StaticBody2D"]
 y_sort_enabled = true

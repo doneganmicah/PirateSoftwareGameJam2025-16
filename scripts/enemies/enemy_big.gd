@@ -6,9 +6,14 @@ var attack_cooled = true
 @export var cfg_enemy_type : ENEMY_TYPES = ENEMY_TYPES.PLACEHOLDER
 @export var cfg_enemy_act : ENEMY_ACTIVITIES = ENEMY_ACTIVITIES.DEFAULT
 @export var cfg_enemy_patrol : ENEMY_PATROLS = ENEMY_PATROLS.DEFAULT
+@export var cfg_health = 3
+@export var cfg_damage = 1
+@export var cfg_speed = 300
+@onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 
 @export var patrol_speed = 150
 @export var chase_speed = 300
+@export var steer_weight = 25
 
 func _ready() -> void:
 	
@@ -16,7 +21,7 @@ func _ready() -> void:
 	call_deferred("enemies_setup")
 	
 	print("Setting up enemy")
-	_initialize_enemy(cfg_enemy_type, cfg_enemy_act, 0, cfg_enemy_patrol)
+	_initialize_enemy(cfg_enemy_type, cfg_enemy_act, 0, cfg_enemy_patrol, cfg_health, cfg_damage, cfg_speed)
 
 func enemies_setup():
 	# Skip the first frame to prevent race condition before nav server syncs
@@ -26,18 +31,22 @@ func enemies_setup():
 func _physics_process(delta: float) -> void:
 	if not is_alive: return
 	# See which activity the enemy is currently doing
+	var steering
 	match enemy_activity:
 		# The enemy is currently patroling and hasn't spotted the player
 		ENEMY_ACTIVITIES.PATROLING:
 			# Get the navigation vectors for their patrol type
-			velocity = await get_patroling_vector() * patrol_speed
+			steering = ((await get_patroling_vector() * patrol_speed) - velocity) * steer_weight
+			velocity = velocity + (steering * delta)
 		# The enemy is currently pursuing the player.
 		ENEMY_ACTIVITIES.ATACKING:
-			velocity = get_attacking_vector(player) * chase_speed
+			steering = ((get_attacking_vector(player) * chase_speed) - velocity) * steer_weight
+			velocity = velocity + (steering * delta)
 		# The enemy is attacking the player.
 		ENEMY_ACTIVITIES.HITTING:
 			if(not hitting && attack_cooled):
-				velocity = get_attacking_vector(player) * enemy_speed
+				steering = ((get_attacking_vector(player) * 75) - velocity) * steer_weight
+				velocity = velocity + (steering * delta)
 				hitting = true
 				attack_cooled = false
 				await get_tree().create_timer(0.40).timeout
@@ -52,9 +61,23 @@ func _physics_process(delta: float) -> void:
 				await get_tree().create_timer(1).timeout
 				attack_cooled = true
 			elif(attack_cooled == false):
-				velocity = get_attacking_vector(player) * enemy_speed
+				steering = ((get_attacking_vector(player) * chase_speed) - velocity) * steer_weight
+				velocity = velocity + (steering * delta)
 			else:
 				velocity = Vector2.ZERO
+				
+	if velocity > Vector2(0.5,0.5) or velocity < Vector2(-0.5, -0.5):
+		# Sprite Orientation
+		if velocity.x > 0:
+			animated_sprite_2d.flip_h = false
+		elif velocity.x < 0:
+			animated_sprite_2d.flip_h = true
+		
+		animated_sprite_2d.play("big_boi_jump")
+		cpu_particles_2d.emitting = true
+	else:
+		cpu_particles_2d.emitting = false
+		animated_sprite_2d.play("big_boi_idle")
 	move_and_slide()
 
 

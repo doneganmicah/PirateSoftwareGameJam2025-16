@@ -48,7 +48,11 @@ const DEFAULT_MASS = 1
 	get: return animated_sprite_2d
 # Instance of the Control points node
 @onready var control_points: Node = $ControlPoints
+# instance of material for damage flash
+@onready var DAMAGE_FLASH : Material = preload("res://assets/shaders/damage_flash.tres")
 
+
+@export var player : Player
 		
 ## Members
 # This is the amount of health the enemy has, will be set by the child class.
@@ -96,9 +100,10 @@ var enemy_mass : int:
 	
 ## Pathing Variables
 var normalized_dir_vectors = PathVectors.new()
-var weighted_vectors = PathVectors.new()
-var obstacles_vecotrs = PathVectors.new()
-
+var raycast_arrays : Array[bool]
+var weighted_scalars = PathVectors.new() # uses the x value of vec2 as a scalar
+var obstacles_scalars = PathVectors.new() # uses the x value of vec2 as a scalar
+var calculated_choice = PathVectors.new()
 # Current Point of Interest
 var current_poi : Vector2
 # Path switching
@@ -120,8 +125,9 @@ var rng = RandomNumberGenerator.new()
 ## Fill out some variables to prevent uninitialized errors                    ##
 ################################################################################
 func _init() -> void:
-	normalized_dir_vectors
-	
+	normalized_dir_vectors.create_vector(Vector2(0,1), Vector2(1,1), Vector2(1,0), Vector2(1,-1), Vector2(0,-1), Vector2(-1,-1), Vector2(-1,0), Vector2(-1,1))
+	raycast_arrays.resize(8)
+	raycast_arrays.fill(false)
 	_initialize_enemy(ENEMY_TYPES.PLACEHOLDER)
 	rng.set_seed(int(Time.get_unix_time_from_system()))
 	return
@@ -142,6 +148,7 @@ func _initialize_enemy(type: ENEMY_TYPES, activity = ENEMY_ACTIVITIES.DEFAULT ,v
 	self.enemy_patrol_type = patrol
 	self.enemy_mass        = mass
 	is_alive = true
+	
 	if(control_points == null):
 		print("Error: enemy.gd | _initialize_enemy() | The enemy doesn't have the control points node")
 		print("Object: " + self.name + "!")
@@ -197,9 +204,11 @@ func get_attacking_vector(player: Player) -> Vector2:
 	nav_agent.get_next_path_position()
 	
 	nav_agent.target_position = player.global_position
+	
 	if(nav_agent.distance_to_target() >= 40):
 		vector = nav_agent.get_next_path_position() - global_position
 		vector = vector.normalized()
+		#vector = get_best_vector(vector)
 	
 	return vector
 
@@ -230,6 +239,30 @@ func get_patroling_vector() -> Vector2:
 	
 	return vector
 
+func get_best_vector(target_vector: Vector2) -> Vector2:
+	
+	for index in range(8):
+		if(raycast_arrays[index]):
+			if(obstacles_scalars.vec_array[wrapi(index - 1,0, 7)].x != -5): 
+				obstacles_scalars.vec_array[wrapi(index - 1,0, 7)].x = -2
+			obstacles_scalars.vec_array[index].x = -5
+			if(obstacles_scalars.vec_array[wrapi(index + 1,0, 7)].x != -5): 
+				obstacles_scalars.vec_array[wrapi(index + 1,0, 7)].x = -2
+		else:
+			if(obstacles_scalars.vec_array[wrapi(index - 1,0, 7)].x != -5): 
+				obstacles_scalars.vec_array[wrapi(index - 1,0, 7)].x = 1
+			obstacles_scalars.vec_array[index].x = 1
+			if(obstacles_scalars.vec_array[wrapi(index + 1,0, 7)].x != -5): 
+				obstacles_scalars.vec_array[wrapi(index + 1,0, 7)].x = 1
+				
+
+	for index in range(8):
+		var dot = target_vector.dot(normalized_dir_vectors.vec_array[index]) * obstacles_scalars.vec_array[index].x * weighted_scalars.vec_array[index].x
+		calculated_choice.vec_array[index].x = dot
+	
+	var vector = normalized_dir_vectors.vec_array[PathVectors.get_max_index(calculated_choice.vec_array)]
+	return vector
+
 ################################################################################
 ## AI Behaviour: Patrol Path                                                  ##
 ## Follows a path created between two points.                                 ##
@@ -256,6 +289,7 @@ func AI_patrol_path() -> Vector2:
 	else:
 		vector = nav_agent.get_next_path_position() - global_position
 		vector = vector.normalized()
+		#vector = get_best_vector(vector)
 		
 	return vector
 
@@ -287,6 +321,7 @@ func AI_patrol_area() -> Vector2:
 	else:
 		vector = nav_agent.get_next_path_position() - global_position
 		vector = vector.normalized()
+		#vector = get_best_vector(vector)
 	
 	return vector
 
@@ -305,6 +340,7 @@ func AI_guarding() -> Vector2:
 		nav_agent.target_position = guard_vector
 		vector = nav_agent.get_next_path_position() - global_position
 		vector = vector.normalized()
+		#vector = get_best_vector(vector)
 		
 	return vector
 	
@@ -326,12 +362,13 @@ func AI_steering(current_velocity: Vector2, current_position: Vector2, target_po
 func take_damage(damage_amount : float) -> bool:
 	# Visual Damage Indication
 	self.enemy_health -= damage_amount
+	animated_sprite_2d.material = DAMAGE_FLASH
+	await get_tree().create_timer(0.15).timeout
+	animated_sprite_2d.material = null
 	if (self.enemy_health <= 0):
 		has_died()
 		return true
 	return false
-
-
 
 
 ################################################################################
