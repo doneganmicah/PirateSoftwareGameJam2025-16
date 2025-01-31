@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bvrtpuavtqtnc"]
+
+[ext_resource type="Shader" path="res://assets/shaders/spore_shader.gdshader" id="1_wj5fh"]
+
+[resource]
+shader = ExtResource("1_wj5fh")
+shader_parameter/color = Color(0.373802, 0.641827, 0.475746, 0.639216)
