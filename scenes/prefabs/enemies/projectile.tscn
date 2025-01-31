@@ -72,6 +72,7 @@ frame_6/texture = ExtResource("8_lap71")
 frame_6/duration = 1.0
 
 [node name="Projectile" type="CharacterBody2D"]
+z_index = 6
 collision_layer = 0
 script = ExtResource("1_6nyeu")
 
