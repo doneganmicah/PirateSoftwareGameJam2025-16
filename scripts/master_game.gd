@@ -11,7 +11,7 @@ var current_2d_scene : Node2D
 var current_gui_scene : Control
 
 func _ready() -> void:
-	Globals.game_controller = self	
+	Globals.game_controller = self
 
 func change_gui_scene(new_scene: String, delete: bool = true, keep_running = false) -> void:
 	if(current_gui_scene != null):
