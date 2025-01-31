@@ -33,6 +33,7 @@ script = ExtResource("1_2dsph")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.0818452, 0.0818452)
 sprite_frames = SubResource("SpriteFrames_aw35g")
+flip_h = true
 
 [node name="MeleeAttackEffectiveRange" type="Area2D" parent="."]
 position = Vector2(0, 12)

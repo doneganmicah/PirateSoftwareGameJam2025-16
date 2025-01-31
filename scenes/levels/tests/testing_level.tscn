@@ -1,13 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmjen4bcw24wh"]
+[gd_scene load_steps=8 format=3 uid="uid://bmjen4bcw24wh"]
 
 [ext_resource type="PackedScene" uid="uid://qpnbegdaqstg" path="res://scenes/prefabs/player.tscn" id="1_xlmfb"]
 [ext_resource type="PackedScene" uid="uid://dm8s68xm57ymb" path="res://scenes/ui_elements/health_bar.tscn" id="2_io8dk"]
-[ext_resource type="PackedScene" uid="uid://b5c1n863vmfr0" path="res://scenes/prefabs/enemy_test.tscn" id="2_ul73w"]
+[ext_resource type="PackedScene" uid="uid://bc0uly0ha3jgc" path="res://scenes/prefabs/enemies/enemy_tiny.tscn" id="3_ltyx0"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_4mb60"]
 vertices = PackedVector2Array(151.422, 574.477, 276.578, 450.133, 536.938, 304.102, 570.406, 362.273, 656.383, 514.602, 876.617, 1433.34, 228.688, 1538.3, -595.32, 1407.6, 1775.38, -153.523, 1807.84, 1270.81, 835.203, 491.023, 777.961, 294.75, 680.547, 195.359, 678.531, 183.398, 413.828, 186.469, 233.023, 354.906, 213.719, 212.359, 158.023, 337.25, 20.4688, 341.32, 89.9063, 394.719, -1115.49, 522.273, 538.563, -415.594, 516, 130.828, -1024.33, -175.031, -223.578, -405.039, 43.2813, 196.703)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7), PackedInt32Array(8, 9, 10, 11), PackedInt32Array(10, 9, 5, 4), PackedInt32Array(8, 11, 12, 13), PackedInt32Array(12, 11, 3, 2), PackedInt32Array(14, 2, 1, 15, 16), PackedInt32Array(17, 16, 15), PackedInt32Array(18, 17, 15, 19, 20), PackedInt32Array(21, 8, 13, 22), PackedInt32Array(0, 7, 20, 19), PackedInt32Array(18, 20, 23, 24, 25), PackedInt32Array(16, 25, 24, 21, 22, 14)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-225.05, -415.032, 539.513, -425.613, 1785.2, -161.662, 1818.04, 1279.19, 878.305, 1443.2, 228.7, 1548.43, -601.554, 1416.75, -1125.86, 524.374, -1033.41, -182.826), PackedVector2Array(51.7008, 207.516, 32.2369, 330.967, 151.453, 327.44, 198.896, 221.037), PackedVector2Array(669.677, 191.056, 517.008, 141.675, 430.637, 188.704, 537.688, 290.992), PackedVector2Array(661.77, 503.799, 822.346, 482.636, 771.254, 307.453, 585.131, 368.003), PackedVector2Array(102.793, 401.511, 155.711, 556.119, 264.586, 447.952, 227.483, 366.827)])
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_atroj"]
+radius = 31.257
+
+[sub_resource type="Gradient" id="Gradient_3fttw"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8kd30"]
+gradient = SubResource("Gradient_3fttw")
 
 [node name="TestingLevel" type="Node2D"]
 
@@ -22,6 +32,19 @@ scale = Vector2(2.18754, 2.18754)
 position = Vector2(-1.07288e-05, -37.9422)
 scale = Vector2(14.7411, 242.949)
 zoom = Vector2(0.61, 0.61)
+
+[node name="enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_ltyx0")]
+position = Vector2(-137, 693)
+scale = Vector2(3.69254, 3.82056)
+cfg_enemy_type = 1
+cfg_enemy_act = 1
+cfg_enemy_patrol = 3
+player = NodePath("../Player")
+
+[node name="ControlPoints" type="Node" parent="enemy"]
+
+[node name="A" type="Node2D" parent="enemy/ControlPoints"]
+position = Vector2(492, 836)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(-186, -263)
@@ -40,26 +63,11 @@ polygon = PackedVector2Array(116.175, 407.389, 217.143, 379.172, 247.555, 447.36
 [node name="Polygon2D4" type="Polygon2D" parent="NavigationRegion2D"]
 polygon = PackedVector2Array(602.77, 375.057, 667.852, 476.757, 803.491, 462.061, 764.563, 326.852)
 
-[node name="enemy_test" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_ul73w")]
-position = Vector2(309, 177)
-scale = Vector2(2.3515, 2.3515)
-cfg_enemy_act = 1
-cfg_enemy_patrol = 2
-player = NodePath("../Player")
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(483, 445)
 
-[node name="ControlPoints" type="Node" parent="enemy_test"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_atroj")
 
-[node name="A" type="Node2D" parent="enemy_test/ControlPoints"]
-position = Vector2(-170, 168)
-
-[node name="B" type="Node2D" parent="enemy_test/ControlPoints"]
-position = Vector2(843, -18)
-
-[node name="C" type="Node2D" parent="enemy_test/ControlPoints"]
-position = Vector2(971, 604)
-
-[node name="D" type="Node2D" parent="enemy_test/ControlPoints"]
-position = Vector2(401, 325)
-
-[node name="E" type="Node2D" parent="enemy_test/ControlPoints"]
-position = Vector2(274, 731)
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = SubResource("GradientTexture2D_8kd30")

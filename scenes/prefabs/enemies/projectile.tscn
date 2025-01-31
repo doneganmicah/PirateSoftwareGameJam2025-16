@@ -1,0 +1,109 @@
+[gd_scene load_steps=17 format=3 uid="uid://klwpixtkgq5d"]
+
+[ext_resource type="Script" path="res://scripts/enemies/projectile.gd" id="1_6nyeu"]
+[ext_resource type="Shader" path="res://assets/shaders/spore_shader.gdshader" id="2_ihfh5"]
+[ext_resource type="Texture2D" uid="uid://b541ialn5f0f8" path="res://assets/player/spores/Spore1.png" id="2_uf5ve"]
+[ext_resource type="Texture2D" uid="uid://csqo5e7uojenf" path="res://assets/player/spores/Spore5.png" id="3_o81xe"]
+[ext_resource type="Texture2D" uid="uid://btax87xx60rcm" path="res://assets/player/spores/Spore3.png" id="4_klbnh"]
+[ext_resource type="Texture2D" uid="uid://dty5hrutm3sui" path="res://assets/player/spores/Spore4.png" id="5_t4r0m"]
+[ext_resource type="Texture2D" uid="uid://devhqcuvf8msf" path="res://assets/player/spores/Spore6.png" id="6_25xh2"]
+[ext_resource type="Texture2D" uid="uid://pb7v3g38c3xa" path="res://assets/player/spores/Spore2.png" id="7_roa1q"]
+[ext_resource type="Texture2D" uid="uid://cijrnq3l0mdor" path="res://assets/player/spores/Spore7.png" id="8_lap71"]
+[ext_resource type="Shader" path="res://assets/shaders/spore_emitted_shader.gdshader" id="10_yq3dq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hqt63"]
+shader = ExtResource("2_ihfh5")
+shader_parameter/color = Color(0.4, 0.298039, 0.533333, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dixpy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_uf5ve")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_o81xe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_klbnh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_t4r0m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_25xh2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_roa1q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_lap71")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lfiq8"]
+radius = 16.0312
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xvwyq"]
+radius = 9.21954
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_81l0k"]
+shader = ExtResource("10_yq3dq")
+shader_parameter/color = Color(0.4, 0.298039, 0.533333, 1)
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_bln0u"]
+frames = 7
+pause = true
+frame_0/texture = ExtResource("2_uf5ve")
+frame_1/texture = ExtResource("7_roa1q")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("4_klbnh")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("5_t4r0m")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("3_o81xe")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("6_25xh2")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("8_lap71")
+frame_6/duration = 1.0
+
+[node name="Projectile" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_6nyeu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_hqt63")
+position = Vector2(0, 2)
+scale = Vector2(0.51959, 0.51959)
+sprite_frames = SubResource("SpriteFrames_dixpy")
+frame = 4
+frame_progress = 0.74764
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_lfiq8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xvwyq")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_81l0k")
+amount = 32
+speed_scale = 0.71
+lifetime_randomness = 0.18
+texture = SubResource("AnimatedTexture_bln0u")
+emission_shape = 1
+emission_sphere_radius = 10.89
+spread = 172.5
+gravity = Vector2(0, 0)
+initial_velocity_min = 4.55
+initial_velocity_max = 22.73
+scale_amount_min = 0.0
+scale_amount_max = 0.25
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
