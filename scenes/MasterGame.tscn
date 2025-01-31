@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bcn870weytdsm"]
+[gd_scene load_steps=7 format=3 uid="uid://bcn870weytdsm"]
 
 [ext_resource type="Script" path="res://scripts/master_game.gd" id="1_mlq03"]
 [ext_resource type="PackedScene" path="res://scenes/ui_elements/main_menu.tscn" id="2_w56v4"]
+[ext_resource type="Script" path="res://scripts/handlers/audio_manager.gd" id="3_lqaqr"]
 
 [sub_resource type="Animation" id="Animation_8ki5g"]
 resource_name = "mainmenu_play"
@@ -58,7 +59,13 @@ grow_vertical = 2
 [node name="MainMenu" parent="GUI" instance=ExtResource("2_w56v4")]
 layout_mode = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Helper" type="Node" parent="."]
+
+[node name="AudioManager" type="AudioStreamPlayer2D" parent="Helper"]
+script = ExtResource("3_lqaqr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Helper"]
+root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_cpiar")
 }
