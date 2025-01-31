@@ -11,6 +11,8 @@ var player_ring_size = 8
 var player_killed_enemies = 0
 var player_hurt_enemies   = 0
 var player_completed_levels = 0
+var slightly_evil : bool = false
+var really_evil : bool = false
 
 # instance of material for damage flash
 @onready var DAMAGE_FLASH : Material = preload("res://assets/shaders/damage_flash.tres")
