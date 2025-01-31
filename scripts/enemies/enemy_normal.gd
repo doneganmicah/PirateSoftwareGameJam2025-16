@@ -48,7 +48,7 @@ func _physics_process(delta: float) -> void:
 				velocity = velocity + (steering * delta)
 				hitting = true
 				attack_cooled = false
-				await get_tree().create_timer(0.40).timeout
+				await get_tree().create_timer(0.20).timeout
 				for body in range_area.get_overlapping_bodies():
 					if(body is not CharacterBody2D): continue
 					# This code is botched and there has to be a better way to do it.

@@ -21,6 +21,8 @@ CanvasDialog="*res://scenes/ui_elements/canvas_dialog.tscn"
 Dialogs="*res://scripts/refs/dialogs.gd"
 Globals="*res://scripts/refs/globals.gd"
 Signals="*res://scripts/refs/signals.gd"
+AudioTracks="*res://scripts/refs/audio_tracks.gd"
+AudioManager="*res://scripts/handlers/audio_manager.gd"
 
 [display]
 

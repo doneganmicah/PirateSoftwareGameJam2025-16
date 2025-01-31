@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://11ki6vtjt2cl"]
+[gd_scene load_steps=39 format=3 uid="uid://11ki6vtjt2cl"]
 
 [ext_resource type="PackedScene" uid="uid://dm8s68xm57ymb" path="res://scenes/ui_elements/health_bar.tscn" id="1_eeck2"]
 [ext_resource type="PackedScene" uid="uid://qpnbegdaqstg" path="res://scenes/prefabs/player.tscn" id="1_gpid8"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cj84qv0ekwunk" path="res://assets/level/Dirt_background.png" id="4_ansft"]
 [ext_resource type="Texture2D" uid="uid://byapxcui4neir" path="res://assets/level/Circle_Tree.png" id="5_4ikxw"]
 [ext_resource type="PackedScene" uid="uid://bkpc42ubiksds" path="res://scenes/prefabs/enemies/enemy_big.tscn" id="5_r6wm0"]
+[ext_resource type="Script" path="res://scripts/enemies/enemy.gd" id="5_w3l45"]
 [ext_resource type="Texture2D" uid="uid://cuamigq25d6tb" path="res://assets/level/Stump.png" id="6_7w1jv"]
 [ext_resource type="Texture2D" uid="uid://uoxooyxk0xqd" path="res://assets/level/Bright Fuzzy_Tree_Crown_bush.png" id="7_t7b05"]
 [ext_resource type="Texture2D" uid="uid://boitjwil8qmbm" path="res://assets/level/Bright Fuzzy_Tree_Crown.png" id="8_jycsq"]
@@ -102,9 +103,10 @@ vertices = PackedVector2Array(-1560.12, -390.07, -1560.11, -390.063, -2222.08, -
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 8, 9, 10, 11, 12), PackedInt32Array(13, 10, 9, 14), PackedInt32Array(15, 16, 3, 2), PackedInt32Array(0, 4, 17, 18), PackedInt32Array(19, 20, 5, 12), PackedInt32Array(21, 18, 17, 22, 23, 24, 25), PackedInt32Array(12, 11, 26, 27), PackedInt32Array(28, 29, 27, 26, 30, 31), PackedInt32Array(31, 30, 32, 33), PackedInt32Array(33, 32, 34), PackedInt32Array(35, 33, 34, 36, 37, 38), PackedInt32Array(13, 14, 39, 40), PackedInt32Array(41, 40, 39, 42, 21), PackedInt32Array(25, 41, 21), PackedInt32Array(24, 23, 37, 36)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-2583, -681, -2206, -679, -1921.98, -679.842, -1441, -679, -1249.74, -818.916, -1102, -927, -965.94, -1061.23, -879, -1147, -691.997, -1146.84, -481.986, -1146.66, -121.99, -1146.36, 84.0081, -1146.19, 303, -1146, 398.285, -936.467, 509, -693, 804, -694, 808, -548, 512, -544, 486.968, -455.844, 466, -382, 393.441, -265.607, 278.932, -81.9237, 125, 165, -63.9894, 165, -337.989, 165, -659, 165, -820.436, 23.2574, -1095.58, -218.324, -1282, -382, -1560.05, -380.072, -2222, -377, -2580, -373), PackedVector2Array(-247, -440, -86, -440, -64, -474, -67, -541, -71, -630, -121, -666, -182, -675, -284, -676, -383, -661, -411, -589, -409, -514, -401, -442)])
 
-[node name="LevelOne" type="Node2D"]
+[node name="LevelOne" type="Node2D" node_paths=PackedStringArray("player")]
 y_sort_enabled = true
 script = ExtResource("1_wgsa2")
+player = NodePath("Player")
 
 [node name="HealthBar" parent="." instance=ExtResource("1_eeck2")]
 
@@ -132,7 +134,7 @@ libraries = {
 
 [node name="Player" parent="." instance=ExtResource("1_gpid8")]
 y_sort_enabled = true
-position = Vector2(-3113, -521)
+position = Vector2(-2381, -526)
 scale = Vector2(1.51138, 1.51138)
 wall_min_slide_angle = 3.14159
 floor_stop_on_slope = false
@@ -159,10 +161,17 @@ player = NodePath("../../Player")
 [node name="A" type="Node2D" parent="Enemies/enemy_guarding/ControlPoints"]
 position = Vector2(-660, -546)
 
-[node name="enemy_The Sacrifice" parent="Enemies" instance=ExtResource("4_6vtc6")]
-position = Vector2(-2203, -727)
+[node name="enemy_The Sacrifice" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("4_6vtc6")]
+position = Vector2(-2262, -532)
 scale = Vector2(3.24302, 3.24302)
-script = null
+script = ExtResource("5_w3l45")
+player = NodePath("../../Player")
+
+[node name="ControlPoints" type="Node" parent="Enemies/enemy_The Sacrifice"]
+
+[node name="A" type="Node2D" parent="Enemies/enemy_The Sacrifice/ControlPoints"]
+position = Vector2(353, -609)
+rotation = 0.00145816
 
 [node name="enemy_patroling" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("4_6vtc6")]
 position = Vector2(-13, -10)
@@ -815,7 +824,7 @@ texture = ExtResource("3_pqtp7")
 
 [node name="CalmingStrump" parent="." instance=ExtResource("11_xxq4y")]
 z_index = 5
-position = Vector2(-2146, -523)
+position = Vector2(-1966, -532)
 
 [node name="Decoration" type="Node2D" parent="."]
 z_index = 5
