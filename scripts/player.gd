@@ -77,6 +77,8 @@ func receive_damage(damage_amount: int):
 	playerAnimation.material = Globals.DAMAGE_FLASH
 	await get_tree().create_timer(0.15).timeout
 	playerAnimation.material = null
+	ringSize += 2
+	
 	if(health <= 0):
 		has_died()
 	return	
@@ -84,6 +86,7 @@ func receive_damage(damage_amount: int):
 # The player has died	
 func has_died():
 	# TODO: Implement death handling
+	Signals.player_died.emit()
 	print("ded")
 	pass
 
@@ -119,4 +122,5 @@ func _on_timer_timeout() -> void:
 	for body in bodies:
 		if (body.is_in_group("enemy")):
 			# Deal damage to enemy
-			body.take_damage(1.0)
+			Globals.player_hurt_enemies += 1
+			if(await body.take_damage(1.0)): Globals.player_killed_enemies += 1

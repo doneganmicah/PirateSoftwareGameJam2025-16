@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 CanvasDialog="*res://scenes/ui_elements/canvas_dialog.tscn"
 Dialogs="*res://scripts/refs/dialogs.gd"
 Globals="*res://scripts/refs/globals.gd"
+Signals="*res://scripts/refs/signals.gd"
 
 [editor]
 

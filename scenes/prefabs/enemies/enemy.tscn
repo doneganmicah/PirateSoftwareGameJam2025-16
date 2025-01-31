@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://c0btscpuj5pgl"]
+[gd_scene load_steps=57 format=3 uid="uid://c0btscpuj5pgl"]
 
 [ext_resource type="Script" path="res://scripts/enemies/enemy.gd" id="1_smcsu"]
 [ext_resource type="Texture2D" uid="uid://bcrs2bnf2pmb1" path="res://assets/enemies/Beeeg_Boi_Jump_Cycle.png" id="2_caknt"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b5sudbbnyfigj" path="res://assets/enemies/Skinny_Shroom_Walk_Cycle.png" id="5_4dqdm"]
 [ext_resource type="Shader" path="res://assets/shaders/sprite_shadow.gdshader" id="7_k054h"]
 [ext_resource type="Texture2D" uid="uid://pb7v3g38c3xa" path="res://assets/player/spores/Spore2.png" id="8_08qty"]
+[ext_resource type="PackedScene" uid="uid://b3wgbo5sq4ca8" path="res://scenes/spore_particles.tscn" id="9_gbf0u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5vnfe"]
 atlas = ExtResource("2_y1dgk")
@@ -404,6 +405,9 @@ shape = SubResource("CircleShape2D_2p6qr")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
 debug_enabled = true
+
+[node name="SporeParticles" parent="." instance=ExtResource("9_gbf0u")]
+emitting = false
 
 [connection signal="body_entered" from="MeleeAttackEffectiveRange" to="." method="_player_entered_attack_range"]
 [connection signal="body_exited" from="MeleeAttackEffectiveRange" to="." method="_player_left_attack_range"]

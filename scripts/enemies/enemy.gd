@@ -49,6 +49,8 @@ const DEFAULT_MASS = 1
 # Instance of the Control points node
 @onready var control_points: Node = $ControlPoints
 
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+
 
 
 @export var player : Player
@@ -115,6 +117,9 @@ var guard_vector = Vector2(0,0)
 var waiting = false
 # Random Numbers
 var rng = RandomNumberGenerator.new()
+
+@onready var spore_particles: CPUParticles2D = $SporeParticles
+
 
 ################################################################################
 ##                                 Functions                                  ##
@@ -384,8 +389,12 @@ func hit_player(player : Player):
 ################################################################################
 func has_died():
 	self.is_alive = false
-	#TODO implement
-	pass
+	animated_sprite_2d.visible = false
+	spore_particles.color = Color(1.0, 0.0, 0.0, 0.5)
+	spore_particles.emitting = true
+	collision_shape_2d.disabled = true
+	await get_tree().create_timer(2).timeout
+	queue_free()
 
 ################################################################################
 ##                       Callbacks and other Callables                        ##

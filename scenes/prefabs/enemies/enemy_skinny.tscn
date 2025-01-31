@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://bbtk8noonv0dt"]
+[gd_scene load_steps=57 format=3 uid="uid://bbtk8noonv0dt"]
 
 [ext_resource type="Script" path="res://scripts/enemies/enemy_skinny.gd" id="1_ylm8m"]
 [ext_resource type="Texture2D" uid="uid://ctx60d8h0kwnd" path="res://assets/enemies/Beeeg_Boi_Jump_Cycle2.png" id="2_ue1kj"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b5sudbbnyfigj" path="res://assets/enemies/Skinny_Shroom_Walk_Cycle.png" id="6_mxi1d"]
 [ext_resource type="Shader" path="res://assets/shaders/sprite_shadow.gdshader" id="7_cv3c6"]
 [ext_resource type="Texture2D" uid="uid://pb7v3g38c3xa" path="res://assets/player/spores/Spore2.png" id="8_kh52x"]
+[ext_resource type="PackedScene" uid="uid://b3wgbo5sq4ca8" path="res://scenes/spore_particles.tscn" id="9_pwu21"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5vnfe"]
 atlas = ExtResource("2_ue1kj")
@@ -369,15 +370,6 @@ floor_block_on_wall = false
 platform_on_leave = 2
 platform_floor_layers = 0
 script = ExtResource("1_ylm8m")
-cfg_enemy_type = null
-cfg_enemy_act = null
-cfg_enemy_patrol = null
-cfg_health = null
-cfg_damage = null
-cfg_speed = null
-patrol_speed = null
-chase_speed = null
-steer_weight = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
@@ -418,6 +410,14 @@ shape = SubResource("CircleShape2D_2p6qr")
 avoidance_enabled = true
 
 [node name="ProjectilesLiveHere" type="Node" parent="."]
+
+[node name="SporeParticles" parent="." instance=ExtResource("9_pwu21")]
+emitting = false
+amount = 32
+one_shot = true
+emission_sphere_radius = 5.93
+scale_amount_min = 0.01
+scale_amount_max = 0.1
 
 [connection signal="body_entered" from="MeleeAttackEffectiveRange" to="." method="_player_entered_attack_range"]
 [connection signal="body_exited" from="MeleeAttackEffectiveRange" to="." method="_player_left_attack_range"]

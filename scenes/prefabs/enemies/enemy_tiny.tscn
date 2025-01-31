@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://bc0uly0ha3jgc"]
+[gd_scene load_steps=58 format=3 uid="uid://bc0uly0ha3jgc"]
 
 [ext_resource type="Script" path="res://scripts/enemies/enemy_tiny.gd" id="1_fgdk2"]
 [ext_resource type="Texture2D" uid="uid://ctx60d8h0kwnd" path="res://assets/enemies/Beeeg_Boi_Jump_Cycle2.png" id="2_k14k8"]
@@ -9,6 +9,7 @@
 [ext_resource type="Shader" path="res://assets/shaders/sprite_shadow.gdshader" id="7_rjm08"]
 [ext_resource type="Texture2D" uid="uid://pb7v3g38c3xa" path="res://assets/player/spores/Spore2.png" id="8_aorf7"]
 [ext_resource type="Script" path="res://scripts/utility/ray_cast_2d.gd" id="9_450tu"]
+[ext_resource type="PackedScene" uid="uid://b3wgbo5sq4ca8" path="res://scenes/spore_particles.tscn" id="10_2abfv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5vnfe"]
 atlas = ExtResource("2_k14k8")
@@ -414,6 +415,14 @@ avoidance_enabled = true
 visible = false
 target_position = Vector2(0, 87)
 script = ExtResource("9_450tu")
+
+[node name="SporeParticles" parent="." instance=ExtResource("10_2abfv")]
+emitting = false
+amount = 32
+one_shot = true
+emission_sphere_radius = 5.93
+scale_amount_min = 0.01
+scale_amount_max = 0.1
 
 [connection signal="body_entered" from="MeleeAttackEffectiveRange" to="." method="_player_entered_attack_range"]
 [connection signal="body_exited" from="MeleeAttackEffectiveRange" to="." method="_player_left_attack_range"]
