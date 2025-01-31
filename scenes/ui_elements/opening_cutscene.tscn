@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://28mm6glpnfpx"]
+[gd_scene load_steps=31 format=3 uid="uid://28mm6glpnfpx"]
 
 [ext_resource type="Texture2D" uid="uid://b35so2c13517t" path="res://assets/cutscenes/Opening_1-past.png" id="1_p67w2"]
 [ext_resource type="Script" path="res://scripts/handlers/cutscene_manager.gd" id="1_v7p8v"]
@@ -10,6 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://b4r6yb8gwhdjn" path="res://assets/cutscenes/Opening_6-past.png" id="8_5ia1b"]
 [ext_resource type="Texture2D" uid="uid://dxc4jjtthqj7p" path="res://assets/cutscenes/Opening_7-present_.png" id="9_fsumv"]
 [ext_resource type="Texture2D" uid="uid://cnykovyrbgnic" path="res://assets/cutscenes/Opening_8-present.png" id="10_nd8oh"]
+[ext_resource type="Texture2D" uid="uid://lsjuv5fj87rn" path="res://assets/cutscenes/Genocide_Ending.png" id="11_4ufkr"]
+[ext_resource type="Texture2D" uid="uid://delm4mjn5b0p2" path="res://assets/cutscenes/Pacifist_Ending.png" id="12_5fgpk"]
+[ext_resource type="Texture2D" uid="uid://da7ysfjbbhaxs" path="res://assets/cutscenes/Neutral_Ending.png" id="13_fdtnx"]
 
 [sub_resource type="Animation" id="Animation_ex804"]
 length = 0.001
@@ -48,6 +51,33 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_pe8hx"]
+resource_name = "cutscene0-1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [null, ExtResource("1_p67w2")]
 }
 
 [sub_resource type="Animation" id="Animation_f88oc"]
@@ -295,33 +325,6 @@ tracks/1/keys = {
 "values": [null, ExtResource("9_fsumv")]
 }
 
-[sub_resource type="Animation" id="Animation_pe8hx"]
-resource_name = "cutscene0-1"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TextureRect:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.133333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [null, ExtResource("1_p67w2")]
-}
-
 [sub_resource type="Animation" id="Animation_al3dy"]
 resource_name = "start"
 length = 0.2
@@ -350,6 +353,127 @@ tracks/1/keys = {
 "values": [false, true]
 }
 
+[sub_resource type="Animation" id="Animation_asdij"]
+resource_name = "start_end_bad"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [null, ExtResource("11_4ufkr")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_4qsqd"]
+resource_name = "start_end_good"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [null, ExtResource("13_fdtnx")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.133333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_lfngs"]
+resource_name = "end_end_bad"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5wxiu"]
+resource_name = "mid_end_good"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("13_fdtnx"), ExtResource("12_5fgpk")]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v8wdr"]
 _data = {
 "RESET": SubResource("Animation_ex804"),
@@ -363,7 +487,11 @@ _data = {
 "cutscene7-8": SubResource("Animation_or0i8"),
 "cutscene8-blank": SubResource("Animation_cjtlj"),
 "cutsceneblank-7": SubResource("Animation_vr1li"),
-"start": SubResource("Animation_al3dy")
+"end_end_bad": SubResource("Animation_lfngs"),
+"mid_end_good": SubResource("Animation_5wxiu"),
+"start": SubResource("Animation_al3dy"),
+"start_end_bad": SubResource("Animation_asdij"),
+"start_end_good": SubResource("Animation_4qsqd")
 }
 
 [node name="OpeningCutscene" type="Control"]

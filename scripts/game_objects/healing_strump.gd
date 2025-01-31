@@ -29,14 +29,15 @@ var is_used = false
 ## Called when the node enters the scene tree for the first time.             ##
 ################################################################################
 func _process(delta: float) -> void:
-	if(player.health >= player.MAX_HEALTH):
-		is_fully_healed = true
-	else:
-		is_fully_healed = false
-	
-	if(not is_used):
-		# emit particles!
-		pass
+	pass
+	#if(player.health >= player.MAX_HEALTH):
+		#is_fully_healed = true
+	#else:
+		#is_fully_healed = false
+	#
+	#if(not is_used):
+		## emit particles!
+		#pass
 		
 	
 ################################################################################

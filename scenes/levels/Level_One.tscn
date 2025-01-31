@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://11ki6vtjt2cl"]
+[gd_scene load_steps=37 format=3 uid="uid://11ki6vtjt2cl"]
 
 [ext_resource type="PackedScene" uid="uid://dm8s68xm57ymb" path="res://scenes/ui_elements/health_bar.tscn" id="1_eeck2"]
 [ext_resource type="PackedScene" uid="uid://qpnbegdaqstg" path="res://scenes/prefabs/player.tscn" id="1_gpid8"]
@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://uoxooyxk0xqd" path="res://assets/level/Bright Fuzzy_Tree_Crown_bush.png" id="7_t7b05"]
 [ext_resource type="Texture2D" uid="uid://boitjwil8qmbm" path="res://assets/level/Bright Fuzzy_Tree_Crown.png" id="8_jycsq"]
 [ext_resource type="Shader" path="res://assets/shaders/sprite_shadow.gdshader" id="10_rg44i"]
-[ext_resource type="PackedScene" uid="uid://di6xce1ric4yn" path="res://scenes/prefabs/objects/calming_strump.tscn" id="11_xxq4y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hn0kw"]
 radius = 186.011
@@ -808,10 +807,6 @@ position = Vector2(-48.0084, -3783)
 rotation = 2.56445
 scale = Vector2(1.3804, 1.3804)
 texture = ExtResource("3_pqtp7")
-
-[node name="CalmingStrump" parent="." instance=ExtResource("11_xxq4y")]
-z_index = 5
-position = Vector2(-1966, -532)
 
 [node name="Decoration" type="Node2D" parent="."]
 z_index = 5

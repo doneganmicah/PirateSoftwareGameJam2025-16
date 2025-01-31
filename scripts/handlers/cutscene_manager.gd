@@ -7,14 +7,20 @@ var ending_text_rect : TextureRect
 
 func _physics_process(delta: float) -> void:
 	if(Input.is_action_just_pressed("skip_cutscene")):
+		if(Globals.is_end):
+			Globals.game_controller.get_tree().reload_current_scene()
 		dialog.diag_end_callable = end_opening
 		dialog.close_dialog()
+	
 		
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	animation_player.play("start")
-	_start_cutscene()
+	if (not Globals.is_end):
+		animation_player.play("start")
+		_start_cutscene()
+	else:
+		_start_endscene()
 
 func _start_cutscene():
 	dialog.show_dialog(Dialogs.opening_cutscene_1_1, show_dialog_2)
@@ -108,3 +114,33 @@ func show_dialog_23():
 func end_opening():
 	Globals.game_controller.change_2d_scene(Globals.scenes.level_one)
 	
+func _start_endscene():
+	AudioManager.play_music("Finale")
+	
+	if(Globals.really_evil):
+		animation_player.play("start_end_bad")
+		await animation_player.animation_finished
+		dialog.show_dialog(Dialogs.opening_cutscene_9_1, bad_dialog_1)
+	else:
+		animation_player.play("start_end_good")
+		dialog.show_dialog(Dialogs.opening_cutscene_10_1, good_dialog_1)
+		await animation_player.animation_finished
+	
+func bad_dialog_1():
+	animation_player.play("end_end_bad")
+	await animation_player.animation_finished
+	await dialog.show_dialog(Dialogs.opening_cutscene_9_2, end_the_game)
+	
+func good_dialog_1():
+	animation_player.play("mid_end_good")
+	await animation_player.animation_finished
+	dialog.show_dialog(Dialogs.opening_cutscene_10_2, good_dialog_2)
+
+func good_dialog_2():
+	animation_player.play("end_end_bad")
+	await animation_player.animation_finished
+	await dialog.show_dialog(Dialogs.opening_cutscene_10_3, end_the_game)
+	
+func end_the_game():
+	await AudioManager.finished
+	Globals.game_controller.get_tree().reload_current_scene()
