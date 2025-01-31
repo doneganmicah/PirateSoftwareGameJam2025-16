@@ -21,6 +21,12 @@ CanvasDialog="*res://scenes/ui_elements/canvas_dialog.tscn"
 Dialogs="*res://scripts/refs/dialogs.gd"
 Globals="*res://scripts/refs/globals.gd"
 
+[display]
+
+window/size/viewport_width=1600
+window/size/viewport_height=900
+window/size/resizable=false
+
 [editor]
 
 movie_writer/movie_file="C:/Users/luvde/Videos/PlayerMovmentTest.avi"
