@@ -473,7 +473,12 @@ scale = Vector2(1.409, 1.43504)
 texture = ExtResource("8_dl3v7")
 
 [node name="CircleTreeCrown99" type="Sprite2D" parent="Walls"]
-position = Vector2(-3070, 16)
+position = Vector2(-3220, -296)
+scale = Vector2(1.409, 1.43504)
+texture = ExtResource("8_dl3v7")
+
+[node name="CircleTreeCrown121" type="Sprite2D" parent="Walls"]
+position = Vector2(-3092, 24)
 scale = Vector2(1.409, 1.43504)
 texture = ExtResource("8_dl3v7")
 
@@ -595,7 +600,19 @@ scale = Vector2(1.30545, 1.32957)
 texture = ExtResource("8_dl3v7")
 
 [node name="CircleTreeCrown60" type="Sprite2D" parent="Walls"]
-position = Vector2(-3329, -223)
+position = Vector2(-3380, -287)
+rotation = 1.55311
+scale = Vector2(1.30545, 1.32957)
+texture = ExtResource("8_dl3v7")
+
+[node name="CircleTreeCrown119" type="Sprite2D" parent="Walls"]
+position = Vector2(-3343, -81)
+rotation = 1.55311
+scale = Vector2(1.30545, 1.32957)
+texture = ExtResource("8_dl3v7")
+
+[node name="CircleTreeCrown120" type="Sprite2D" parent="Walls"]
+position = Vector2(-3343, -81)
 rotation = 1.55311
 scale = Vector2(1.30545, 1.32957)
 texture = ExtResource("8_dl3v7")
@@ -1361,7 +1378,7 @@ position = Vector2(-1171, -189)
 texture = ExtResource("12_du2m2")
 
 [node name="RockSiblings" type="Sprite2D" parent="Decoration"]
-position = Vector2(-2320, -1675)
+position = Vector2(-2331, -1511)
 texture = ExtResource("13_lfofk")
 
 [node name="Environment" type="Node" parent="."]

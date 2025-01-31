@@ -18,7 +18,6 @@ func _init() -> void:
 
 func _ready() -> void:
 	add_child(audio_player)
-	audio_player.bus = music_bus
 	audio_player.finished.connect(_on_music_finished)
 	
 func add_track(track_name: String, track: AudioStream) -> void:

@@ -954,13 +954,13 @@ environment = SubResource("Environment_j1mid")
 blend_mode = 1
 
 [node name="PointLight2D2" type="PointLight2D" parent="Environment/Light"]
-position = Vector2(-860.5, -573.5)
-scale = Vector2(88.6094, 49.2969)
+position = Vector2(-734.5, -555.5)
+scale = Vector2(117.266, 71.5781)
 texture = SubResource("GradientTexture2D_go3df")
 
 [node name="PointLight2D3" type="PointLight2D" parent="Environment/Light"]
-position = Vector2(-1485.5, -529)
-scale = Vector2(68.9219, 28.375)
+position = Vector2(-1399, -526)
+scale = Vector2(92.5938, 54.5)
 blend_mode = 1
 texture = SubResource("GradientTexture2D_r4jog")
 
