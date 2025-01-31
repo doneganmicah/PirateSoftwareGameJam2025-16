@@ -37,12 +37,12 @@ func _init() -> void:
 	pass
 	
 func _process(delta: float) -> void:
-	if(Globals.player_hurt_enemies + Globals.player_killed_enemies > 9):
+	if(Globals.player_hurt_enemies + Globals.player_killed_enemies > 5):
 		if(not Globals.slightly_evil):
 			print("Player has become slightly evil")
 			Globals.slightly_evil = true
 			AudioManager.play_music("Neut_init", 0.5)
-	elif(Globals.player_hurt_enemies + Globals.player_killed_enemies > 45):
+	elif(Globals.player_hurt_enemies + Globals.player_killed_enemies > 15):
 		if(not Globals.really_evil):
 			print("Player has become really evil")
 			Globals.really_evil = true
@@ -53,13 +53,15 @@ func reset_level():
 	
 func end_level(goto_scene : String):
 	print("Finished Level")
-	Globals.player_ring_size = player.ringSize
-	Globals.player_health = player.health
 	await get_tree().create_timer(1).timeout
-	if(Globals.game_controller != null):
-		Globals.game_controller.change_2d_scene(goto_scene)
+	if(goto_scene == "ui_end"):
+		Globals.game_controller.change_gui_scene(Scenes.opening_cutscene)
+		queue_free()
 	else:
-		print("Level over but does not have game_controller to proceed")
+		if(Globals.game_controller != null):
+			Globals.game_controller.change_2d_scene(goto_scene)
+		else:
+			print("Level over but does not have game_controller to proceed")
 	
 func pause_level():
 	pass

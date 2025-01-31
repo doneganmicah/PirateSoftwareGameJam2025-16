@@ -11,10 +11,11 @@ func _ready() -> void:
 func _player_entered_ending(body: Node2D) -> void:
 	if (body.is_in_group("player")):
 		Signals.player_died.disconnect(reset)
-		end_level(Globals.scenes.level_three)
+		Globals.is_end = true
+		end_level("ui_end")
 
 func reset():
 	player.health = 3
 	Globals.player_health = 3
-	Globals.game_controller.change_2d_scene(Scenes.level_two)
+	Globals.game_controller.change_2d_scene(Scenes.level_three)
 	
