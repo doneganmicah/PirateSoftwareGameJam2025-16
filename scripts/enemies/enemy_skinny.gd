@@ -53,7 +53,7 @@ func _physics_process(delta: float) -> void:
 				instance.global_position = self.global_position
 				instance.direction = player.global_position - self.global_position 
 				instance.node = proj_node
-				
+				proj_node.add_child.call_deferred(instance)
 				instance.shot()
 				await get_tree().create_timer(2).timeout
 				hitting = false

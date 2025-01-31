@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://11ki6vtjt2cl"]
+[gd_scene load_steps=38 format=3 uid="uid://11ki6vtjt2cl"]
 
 [ext_resource type="PackedScene" uid="uid://dm8s68xm57ymb" path="res://scenes/ui_elements/health_bar.tscn" id="1_eeck2"]
 [ext_resource type="PackedScene" uid="uid://qpnbegdaqstg" path="res://scenes/prefabs/player.tscn" id="1_gpid8"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://cj84qv0ekwunk" path="res://assets/level/Dirt_background.png" id="4_ansft"]
 [ext_resource type="Texture2D" uid="uid://byapxcui4neir" path="res://assets/level/Circle_Tree.png" id="5_4ikxw"]
 [ext_resource type="PackedScene" uid="uid://bkpc42ubiksds" path="res://scenes/prefabs/enemies/enemy_big.tscn" id="5_r6wm0"]
-[ext_resource type="Script" path="res://scripts/enemies/enemy.gd" id="5_w3l45"]
 [ext_resource type="Texture2D" uid="uid://cuamigq25d6tb" path="res://assets/level/Stump.png" id="6_7w1jv"]
 [ext_resource type="Texture2D" uid="uid://uoxooyxk0xqd" path="res://assets/level/Bright Fuzzy_Tree_Crown_bush.png" id="7_t7b05"]
 [ext_resource type="Texture2D" uid="uid://boitjwil8qmbm" path="res://assets/level/Bright Fuzzy_Tree_Crown.png" id="8_jycsq"]
@@ -160,18 +159,6 @@ player = NodePath("../../Player")
 
 [node name="A" type="Node2D" parent="Enemies/enemy_guarding/ControlPoints"]
 position = Vector2(-660, -546)
-
-[node name="enemy_The Sacrifice" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("4_6vtc6")]
-position = Vector2(-2262, -532)
-scale = Vector2(3.24302, 3.24302)
-script = ExtResource("5_w3l45")
-player = NodePath("../../Player")
-
-[node name="ControlPoints" type="Node" parent="Enemies/enemy_The Sacrifice"]
-
-[node name="A" type="Node2D" parent="Enemies/enemy_The Sacrifice/ControlPoints"]
-position = Vector2(353, -609)
-rotation = 0.00145816
 
 [node name="enemy_patroling" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("4_6vtc6")]
 position = Vector2(-13, -10)
@@ -983,6 +970,7 @@ blend_mode = 1
 texture = SubResource("GradientTexture2D_r4jog")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Environment"]
+scale = Vector2(0.997271, 1)
 navigation_polygon = SubResource("NavigationPolygon_rm0ij")
 
 [connection signal="body_entered" from="LevelHandler/Player Transforms/End point" to="." method="_player_entered_ending"]

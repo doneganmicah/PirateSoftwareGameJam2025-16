@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bmjen4bcw24wh"]
+[gd_scene load_steps=8 format=3 uid="uid://bmjen4bcw24wh"]
 
 [ext_resource type="PackedScene" uid="uid://qpnbegdaqstg" path="res://scenes/prefabs/player.tscn" id="1_xlmfb"]
 [ext_resource type="PackedScene" uid="uid://dm8s68xm57ymb" path="res://scenes/ui_elements/health_bar.tscn" id="2_io8dk"]
-[ext_resource type="PackedScene" uid="uid://bc0uly0ha3jgc" path="res://scenes/prefabs/enemies/enemy_tiny.tscn" id="3_ltyx0"]
-[ext_resource type="PackedScene" uid="uid://di6xce1ric4yn" path="res://scenes/prefabs/objects/calming_strump.tscn" id="4_boomv"]
+[ext_resource type="PackedScene" uid="uid://bbtk8noonv0dt" path="res://scenes/prefabs/enemies/enemy_skinny.tscn" id="3_rs5d1"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_4mb60"]
 vertices = PackedVector2Array(151.422, 574.477, 276.578, 450.133, 536.938, 304.102, 570.406, 362.273, 656.383, 514.602, 876.617, 1433.34, 228.688, 1538.3, -595.32, 1407.6, 1775.38, -153.523, 1807.84, 1270.81, 835.203, 491.023, 777.961, 294.75, 680.547, 195.359, 678.531, 183.398, 413.828, 186.469, 233.023, 354.906, 213.719, 212.359, 158.023, 337.25, 20.4688, 341.32, 89.9063, 394.719, -1115.49, 522.273, 538.563, -415.594, 516, 130.828, -1024.33, -175.031, -223.578, -405.039, 43.2813, 196.703)
@@ -34,17 +33,15 @@ position = Vector2(-1.07288e-05, -37.9422)
 scale = Vector2(14.7411, 242.949)
 zoom = Vector2(0.61, 0.61)
 
-[node name="enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_ltyx0")]
-position = Vector2(-137, 693)
-scale = Vector2(3.69254, 3.82056)
-cfg_enemy_type = 1
+[node name="enemy_skinny" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_rs5d1")]
+scale = Vector2(4.91803, 4.91803)
 cfg_enemy_act = 1
 cfg_enemy_patrol = 3
 player = NodePath("../Player")
 
-[node name="ControlPoints" type="Node" parent="enemy"]
+[node name="ControlPoints" type="Node" parent="enemy_skinny"]
 
-[node name="A" type="Node2D" parent="enemy/ControlPoints"]
+[node name="A" type="Node2D" parent="enemy_skinny/ControlPoints"]
 position = Vector2(492, 836)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
@@ -72,6 +69,3 @@ shape = SubResource("CircleShape2D_atroj")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
 texture = SubResource("GradientTexture2D_8kd30")
-
-[node name="CalmingStrump" parent="." instance=ExtResource("4_boomv")]
-position = Vector2(811, 1015)

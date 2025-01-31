@@ -7,7 +7,6 @@ func _ready() -> void:
 	# doing this here but not because want to fill the defaults
 	player.ringSize = Globals.player_ring_size
 	player.health = Globals.player_health
-	AudioManager.play_music("Good_init", 2)
 
 func _player_entered_ending(body: Node2D) -> void:
 	if (body.is_in_group("player")):
@@ -17,5 +16,5 @@ func _player_entered_ending(body: Node2D) -> void:
 func reset():
 	player.health = 3
 	Globals.player_health = 3
-	Globals.game_controller.change_2d_scene(Scenes.level_one)
+	Globals.game_controller.change_2d_scene(Scenes.level_two)
 	
