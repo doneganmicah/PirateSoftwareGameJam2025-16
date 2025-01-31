@@ -5,6 +5,11 @@ var ending_text_rect : TextureRect
 @onready var dialog: DialogManager = $CanvasDialog
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+func _physics_process(delta: float) -> void:
+	if(Input.is_action_just_pressed("skip_cutscene")):
+		dialog.diag_end_callable = end_opening
+		dialog.close_dialog()
+		
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

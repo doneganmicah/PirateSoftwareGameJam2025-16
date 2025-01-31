@@ -35,6 +35,19 @@ class_name Level
 
 func _init() -> void:
 	pass
+	
+func _process(delta: float) -> void:
+	if(Globals.player_hurt_enemies + Globals.player_killed_enemies > 9):
+		if(not Globals.slightly_evil):
+			print("Player has become slightly evil")
+			Globals.slightly_evil = true
+			AudioManager.play_music("Neut_init", 0.5)
+	elif(Globals.player_hurt_enemies + Globals.player_killed_enemies > 45):
+		if(not Globals.really_evil):
+			print("Player has become really evil")
+			Globals.really_evil = true
+			AudioManager.play_music("Bad_init", 4)
+		
 func reset_level():
 	pass
 	
