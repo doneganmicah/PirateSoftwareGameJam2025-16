@@ -13,6 +13,8 @@ var ringSize: int = 1: # To set the ring size, call set_ring_size(int between mi
 	get: return ringSize
 	set(value): ringSize = clamp(value, MIN_RING_SIZE, MAX_RING_SIZE)
 var heartsList: Array[TextureRect]
+
+var player_can_move = true
 # if the ring is being animated right now
 var drawing_ring = false
 
@@ -37,21 +39,12 @@ func _ready() -> void:
 	timer.start()
 
 func _physics_process(delta: float) -> void:
-	
-	# REMOVE LATER: Tab and Shift Tab can be used to adjust ring size for testing
-	if (Input.is_action_just_pressed("ui_text_dedent")):
-		print("Ring Decrease")
-		ringSize -= 1
-	elif (Input.is_action_just_pressed("ui_text_indent")):
-		print("Ring Increase")
-		ringSize += 1
-	
 	# Update size of spore ring
 	set_ring_size(ringSize)
 	
 	var direction := Input.get_vector("player_left", "player_right", "player_up", "player_down")
 	
-	if direction:
+	if direction and player_can_move:
 		# Sprite Orientation
 		if direction.x > 0:
 			playerAnimation.flip_h = false
@@ -65,6 +58,10 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 	
 	move_and_slide()
+
+func can_move(value : bool):
+	player_can_move = value
+
 
 # Called when the player has received any damage
 func receive_damage(damage_amount: int):

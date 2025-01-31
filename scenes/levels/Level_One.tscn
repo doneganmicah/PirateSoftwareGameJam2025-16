@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://11ki6vtjt2cl"]
+[gd_scene load_steps=38 format=3 uid="uid://11ki6vtjt2cl"]
 
 [ext_resource type="PackedScene" uid="uid://dm8s68xm57ymb" path="res://scenes/ui_elements/health_bar.tscn" id="1_eeck2"]
 [ext_resource type="PackedScene" uid="uid://qpnbegdaqstg" path="res://scenes/prefabs/player.tscn" id="1_gpid8"]
@@ -18,6 +18,19 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hn0kw"]
 radius = 186.011
+
+[sub_resource type="Animation" id="Animation_cyhdk"]
+resource_name = "levelone_start"
+length = 10.0
+
+[sub_resource type="Animation" id="Animation_bm5xe"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_73g0n"]
+_data = {
+"RESET": SubResource("Animation_bm5xe"),
+"levelone_start": SubResource("Animation_cyhdk")
+}
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ldsr3"]
 friction = 0.0
@@ -112,9 +125,14 @@ position = Vector2(-2541, -526)
 
 [node name="Enemy Points" type="Node" parent="LevelHandler"]
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelHandler"]
+libraries = {
+"": SubResource("AnimationLibrary_73g0n")
+}
+
 [node name="Player" parent="." instance=ExtResource("1_gpid8")]
 y_sort_enabled = true
-position = Vector2(-2539, -528)
+position = Vector2(-3113, -521)
 scale = Vector2(1.51138, 1.51138)
 wall_min_slide_angle = 3.14159
 floor_stop_on_slope = false
@@ -140,6 +158,11 @@ player = NodePath("../../Player")
 
 [node name="A" type="Node2D" parent="Enemies/enemy_guarding/ControlPoints"]
 position = Vector2(-660, -546)
+
+[node name="enemy_The Sacrifice" parent="Enemies" instance=ExtResource("4_6vtc6")]
+position = Vector2(-2203, -727)
+scale = Vector2(3.24302, 3.24302)
+script = null
 
 [node name="enemy_patroling" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("4_6vtc6")]
 position = Vector2(-13, -10)

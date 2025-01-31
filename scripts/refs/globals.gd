@@ -10,7 +10,7 @@ var player_health = 0
 var player_ring_size = 0
 var player_killed_enemies = 0
 var player_hurt_enemies   = 0
-var palyer_completed_levels = 0
+var player_completed_levels = 0
 
 # instance of material for damage flash
 @onready var DAMAGE_FLASH : Material = preload("res://assets/shaders/damage_flash.tres")

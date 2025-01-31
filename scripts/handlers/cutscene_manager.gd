@@ -6,24 +6,17 @@ var ending_text_rect : TextureRect
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
-var running = false
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-var delay = false
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if(not delay):
-		delay = true
-		await get_tree().create_timer(1).timeout
-		_start_cutscene()
+	animation_player.play("start")
+	_start_cutscene()
 
 func _start_cutscene():
 	dialog.show_dialog(Dialogs.opening_cutscene_1_1, show_dialog_2)
 	
 func show_dialog_2():
+	animation_player.play("cutscene0-1")
+	await animation_player.animation_finished
 	dialog.show_dialog(Dialogs.opening_cutscene_1_2, show_dialog_3)
 	
 func show_dialog_3():
@@ -105,7 +98,8 @@ func show_dialog_22():
 	dialog.show_dialog(Dialogs.opening_cutscene_x_3, show_dialog_23)
 	
 func show_dialog_23():
-	dialog.show_dialog(Dialogs.opening_cutscene_x_4, end)
+	dialog.show_dialog(Dialogs.opening_cutscene_x_4, end_opening)
 	
-func end():
-	pass
+func end_opening():
+	Globals.game_controller.change_2d_scene(Globals.scenes.level_one)
+	
