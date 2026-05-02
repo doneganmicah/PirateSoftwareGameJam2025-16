@@ -1,6 +1,6 @@
 [gd_scene load_steps=28 format=3 uid="uid://d2oc3oovnsscd"]
 
-[ext_resource type="Script" path="res://scripts/levels/level_three.gd" id="1_wtgde"]
+[ext_resource type="Script" uid="uid://cbu6hvo4hymn0" path="res://scripts/levels/level_three.gd" id="1_wtgde"]
 [ext_resource type="PackedScene" uid="uid://dm8s68xm57ymb" path="res://scenes/ui_elements/health_bar.tscn" id="2_wtuab"]
 [ext_resource type="PackedScene" uid="uid://qpnbegdaqstg" path="res://scenes/prefabs/player.tscn" id="3_d48dc"]
 [ext_resource type="PackedScene" uid="uid://wiyd4gihhlh7" path="res://scenes/prefabs/enemies/enemy_normal.tscn" id="5_sclp8"]
@@ -8,9 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://bc0uly0ha3jgc" path="res://scenes/prefabs/enemies/enemy_tiny.tscn" id="6_62xmg"]
 [ext_resource type="Texture2D" uid="uid://d14f3hj5xqf6u" path="res://assets/level/Grass_Background_.png" id="6_f2lsn"]
 [ext_resource type="Texture2D" uid="uid://cseawkxsxy5ft" path="res://assets/level/Circle_Tree_Crown.png" id="8_dl3v7"]
-[ext_resource type="Shader" path="res://assets/shaders/sprite_shadow.gdshader" id="9_q7cx8"]
+[ext_resource type="Shader" uid="uid://bo2gbf28nir5x" path="res://assets/shaders/sprite_shadow.gdshader" id="9_q7cx8"]
 [ext_resource type="Texture2D" uid="uid://uoxooyxk0xqd" path="res://assets/level/Bright Fuzzy_Tree_Crown_bush.png" id="10_1pf3s"]
-[ext_resource type="Texture2D" uid="uid://35f42vaxa6eq" path="res://assets/level/Rock_Doppelgänger_.png" id="12_du2m2"]
+[ext_resource type="Texture2D" uid="uid://35f42vaxa6eq" path="res://assets/level/Rock_Doppelgänger_.png" id="12_du2m2"]
 [ext_resource type="Texture2D" uid="uid://byapxcui4neir" path="res://assets/level/Circle_Tree.png" id="13_2qlfa"]
 [ext_resource type="Texture2D" uid="uid://dtgqdnnxn5p2" path="res://assets/level/Rock_Siblings.png" id="13_lfofk"]
 [ext_resource type="Texture2D" uid="uid://cuamigq25d6tb" path="res://assets/level/Stump.png" id="14_l82ph"]
@@ -29,8 +29,8 @@ length = 10.0
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_73g0n"]
 _data = {
-"RESET": SubResource("Animation_bm5xe"),
-"levelone_start": SubResource("Animation_cyhdk")
+&"RESET": SubResource("Animation_bm5xe"),
+&"levelone_start": SubResource("Animation_cyhdk")
 }
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ldsr3"]

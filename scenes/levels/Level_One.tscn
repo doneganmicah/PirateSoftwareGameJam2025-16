@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://dm8s68xm57ymb" path="res://scenes/ui_elements/health_bar.tscn" id="1_eeck2"]
 [ext_resource type="PackedScene" uid="uid://qpnbegdaqstg" path="res://scenes/prefabs/player.tscn" id="1_gpid8"]
-[ext_resource type="Script" path="res://scripts/levels/level_one.gd" id="1_wgsa2"]
+[ext_resource type="Script" uid="uid://daldub0b6fc4k" path="res://scripts/levels/level_one.gd" id="1_wgsa2"]
 [ext_resource type="Texture2D" uid="uid://d14f3hj5xqf6u" path="res://assets/level/Grass_Background_.png" id="2_gv7uu"]
 [ext_resource type="Texture2D" uid="uid://cseawkxsxy5ft" path="res://assets/level/Circle_Tree_Crown.png" id="3_pqtp7"]
-[ext_resource type="Texture2D" uid="uid://35f42vaxa6eq" path="res://assets/level/Rock_Doppelgänger_.png" id="4_2yxfp"]
+[ext_resource type="Texture2D" uid="uid://35f42vaxa6eq" path="res://assets/level/Rock_Doppelgänger_.png" id="4_2yxfp"]
 [ext_resource type="PackedScene" uid="uid://wiyd4gihhlh7" path="res://scenes/prefabs/enemies/enemy_normal.tscn" id="4_6vtc6"]
 [ext_resource type="Texture2D" uid="uid://cj84qv0ekwunk" path="res://assets/level/Dirt_background.png" id="4_ansft"]
 [ext_resource type="Texture2D" uid="uid://byapxcui4neir" path="res://assets/level/Circle_Tree.png" id="5_4ikxw"]
@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cuamigq25d6tb" path="res://assets/level/Stump.png" id="6_7w1jv"]
 [ext_resource type="Texture2D" uid="uid://uoxooyxk0xqd" path="res://assets/level/Bright Fuzzy_Tree_Crown_bush.png" id="7_t7b05"]
 [ext_resource type="Texture2D" uid="uid://boitjwil8qmbm" path="res://assets/level/Bright Fuzzy_Tree_Crown.png" id="8_jycsq"]
-[ext_resource type="Shader" path="res://assets/shaders/sprite_shadow.gdshader" id="10_rg44i"]
+[ext_resource type="Shader" uid="uid://bo2gbf28nir5x" path="res://assets/shaders/sprite_shadow.gdshader" id="10_rg44i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hn0kw"]
 radius = 186.011
@@ -27,8 +27,8 @@ length = 10.0
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_73g0n"]
 _data = {
-"RESET": SubResource("Animation_bm5xe"),
-"levelone_start": SubResource("Animation_cyhdk")
+&"RESET": SubResource("Animation_bm5xe"),
+&"levelone_start": SubResource("Animation_cyhdk")
 }
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ldsr3"]

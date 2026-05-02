@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://35f42vaxa6eq"
-path="res://.godot/imported/Rock_Doppelgänger_.png-59df5ef73b7012c9b91e4f1f6fcd7856.ctex"
+path="res://.godot/imported/Rock_Doppelgänger_.png-a60953daafe6afc9e43035adee18c574.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/level/Rock_Doppelgänger_.png"
-dest_files=["res://.godot/imported/Rock_Doppelgänger_.png-59df5ef73b7012c9b91e4f1f6fcd7856.ctex"]
+source_file="res://assets/level/Rock_Doppelgänger_.png"
+dest_files=["res://.godot/imported/Rock_Doppelgänger_.png-a60953daafe6afc9e43035adee18c574.ctex"]
 
 [params]
 

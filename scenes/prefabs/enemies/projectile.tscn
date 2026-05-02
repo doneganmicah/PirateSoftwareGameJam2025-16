@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://klwpixtkgq5d"]
 
-[ext_resource type="Script" path="res://scripts/enemies/projectile.gd" id="1_6nyeu"]
-[ext_resource type="Shader" path="res://assets/shaders/spore_shader.gdshader" id="2_ihfh5"]
+[ext_resource type="Script" uid="uid://dukmqf83fi6jx" path="res://scripts/enemies/projectile.gd" id="1_6nyeu"]
+[ext_resource type="Shader" uid="uid://cpur86cgb0o6q" path="res://assets/shaders/spore_shader.gdshader" id="2_ihfh5"]
 [ext_resource type="Texture2D" uid="uid://b541ialn5f0f8" path="res://assets/player/spores/Spore1.png" id="2_uf5ve"]
 [ext_resource type="Texture2D" uid="uid://csqo5e7uojenf" path="res://assets/player/spores/Spore5.png" id="3_o81xe"]
 [ext_resource type="Texture2D" uid="uid://btax87xx60rcm" path="res://assets/player/spores/Spore3.png" id="4_klbnh"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://devhqcuvf8msf" path="res://assets/player/spores/Spore6.png" id="6_25xh2"]
 [ext_resource type="Texture2D" uid="uid://pb7v3g38c3xa" path="res://assets/player/spores/Spore2.png" id="7_roa1q"]
 [ext_resource type="Texture2D" uid="uid://cijrnq3l0mdor" path="res://assets/player/spores/Spore7.png" id="8_lap71"]
-[ext_resource type="Shader" path="res://assets/shaders/spore_emitted_shader.gdshader" id="10_yq3dq"]
+[ext_resource type="Shader" uid="uid://bawo6ac7avb6k" path="res://assets/shaders/spore_emitted_shader.gdshader" id="10_yq3dq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hqt63"]
 shader = ExtResource("2_ihfh5")
