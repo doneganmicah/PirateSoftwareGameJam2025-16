@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://di6xce1ric4yn"]
 
-[ext_resource type="Script" path="res://scripts/game_objects/calming_strump.gd" id="1_d5fmy"]
+[ext_resource type="Script" uid="uid://c84l730jpvgs5" path="res://scripts/game_objects/calming_strump.gd" id="1_d5fmy"]
 [ext_resource type="Texture2D" uid="uid://7hbmo3s14s4y" path="res://assets/Stump.png" id="2_tkxub"]
 [ext_resource type="Texture2D" uid="uid://dty5hrutm3sui" path="res://assets/player/spores/Spore4.png" id="3_dfko4"]
-[ext_resource type="Shader" path="res://assets/shaders/sprite_shadow.gdshader" id="3_k1upc"]
+[ext_resource type="Shader" uid="uid://bo2gbf28nir5x" path="res://assets/shaders/sprite_shadow.gdshader" id="3_k1upc"]
 [ext_resource type="Texture2D" uid="uid://pb7v3g38c3xa" path="res://assets/player/spores/Spore2.png" id="4_lh40b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w0o40"]

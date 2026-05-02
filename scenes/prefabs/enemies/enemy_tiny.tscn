@@ -1,14 +1,14 @@
 [gd_scene load_steps=58 format=3 uid="uid://bc0uly0ha3jgc"]
 
-[ext_resource type="Script" path="res://scripts/enemies/enemy_tiny.gd" id="1_fgdk2"]
+[ext_resource type="Script" uid="uid://dsyxde0t57jtq" path="res://scripts/enemies/enemy_tiny.gd" id="1_fgdk2"]
 [ext_resource type="Texture2D" uid="uid://ctx60d8h0kwnd" path="res://assets/enemies/Beeeg_Boi_Jump_Cycle2.png" id="2_k14k8"]
 [ext_resource type="Texture2D" uid="uid://bcrs2bnf2pmb1" path="res://assets/enemies/Beeeg_Boi_Jump_Cycle.png" id="3_njl6j"]
 [ext_resource type="Texture2D" uid="uid://c2nsjul18a7xv" path="res://assets/enemies/Lil_Gobbie_Wal_Cycle.png" id="4_6swk2"]
 [ext_resource type="Texture2D" uid="uid://by68qx0gmp85e" path="res://assets/enemies/Norman_Normie.png" id="5_h22ju"]
 [ext_resource type="Texture2D" uid="uid://b5sudbbnyfigj" path="res://assets/enemies/Skinny_Shroom_Walk_Cycle.png" id="6_4lupg"]
-[ext_resource type="Shader" path="res://assets/shaders/sprite_shadow.gdshader" id="7_rjm08"]
+[ext_resource type="Shader" uid="uid://bo2gbf28nir5x" path="res://assets/shaders/sprite_shadow.gdshader" id="7_rjm08"]
 [ext_resource type="Texture2D" uid="uid://pb7v3g38c3xa" path="res://assets/player/spores/Spore2.png" id="8_aorf7"]
-[ext_resource type="Script" path="res://scripts/utility/ray_cast_2d.gd" id="9_450tu"]
+[ext_resource type="Script" uid="uid://2auogehw8s4u" path="res://scripts/utility/ray_cast_2d.gd" id="9_450tu"]
 [ext_resource type="PackedScene" uid="uid://b3wgbo5sq4ca8" path="res://scenes/spore_particles.tscn" id="10_2abfv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5vnfe"]

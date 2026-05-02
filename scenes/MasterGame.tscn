@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://bcn870weytdsm"]
 
-[ext_resource type="Script" path="res://scripts/master_game.gd" id="1_mlq03"]
+[ext_resource type="Script" uid="uid://nlf7kuak43kf" path="res://scripts/master_game.gd" id="1_mlq03"]
 [ext_resource type="PackedScene" uid="uid://5gjs4jw6xmbr" path="res://scenes/ui_elements/main_menu.tscn" id="2_w56v4"]
-[ext_resource type="Script" path="res://scripts/handlers/audio_manager.gd" id="3_lqaqr"]
+[ext_resource type="Script" uid="uid://d11msihyvwyb7" path="res://scripts/handlers/audio_manager.gd" id="3_lqaqr"]
 
 [sub_resource type="Animation" id="Animation_ajmxs"]
 length = 0.001
@@ -37,8 +37,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cpiar"]
 _data = {
-"RESET": SubResource("Animation_ajmxs"),
-"mainmenu_play": SubResource("Animation_8ki5g")
+&"RESET": SubResource("Animation_ajmxs"),
+&"mainmenu_play": SubResource("Animation_8ki5g")
 }
 
 [node name="MasterGame" type="Node" node_paths=PackedStringArray("scene_2d", "gui")]
@@ -67,5 +67,5 @@ script = ExtResource("3_lqaqr")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Helper"]
 root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_cpiar")
+&"": SubResource("AnimationLibrary_cpiar")
 }
